@@ -1,0 +1,12 @@
+name: viz
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - R
+dependencies:
+  - r-base=4.4
+  - r-tidyverse=2.0.0
+  - wget=1.20.3
+  - snakemake=7.14.0  
+  - graphviz=5.0.1
