@@ -15,7 +15,7 @@ In order to use this workflow, we need to install and setup some programs and fi
 $ bash <FILE_NAME>
 ```
 
-2. **mamba installation**: Use conda command to install mamba which is a reimplementation of the conda package manager in C++.
+2. **mamba installation**: Use conda command to install mamba which is a reimplementation of the conda package manager in C++. From now on, we will always use mamba command instead of conda command except for "conda activate."
 
 ```console
 $ conda install -n base -c conda-forge mamba
