@@ -5,8 +5,17 @@ channels:
   - defaults
   - R
 dependencies:
-  - r-base=4.4
+  - r-base=4.4.1
   - r-tidyverse=2.0.0
+  - r-data.table=1.15.4
+  - r-here=1.0.1
+  - r-fixest=0.12.1
+  - r-sf=0.7_3
+  - r-readxl=1.4.3
+  - r-progressr=0.14.0
+  - r-texreg=1.39.4
+  - r-tigris=2.1
+  - r-pacman=0.5.1
   - wget=1.20.3
   - snakemake=7.14.0  
   - graphviz=5.0.1
