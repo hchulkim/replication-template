@@ -1,4 +1,4 @@
-name: wfh 
+name: viz
 channels:
   - conda-forge
   - bioconda
