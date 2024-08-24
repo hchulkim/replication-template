@@ -1,0 +1,138 @@
+\documentclass[10pt]{beamer}
+
+% Load necessary packages for beamer. 
+\usepackage{graphicx, booktabs, hyperref, caption, tikz, amsmath, amssymb, amsfonts, amsthm}
+\usetikzlibrary{tikzmark, fit}
+
+% Main theme.
+\usetheme[compress]{Berlin}
+
+% Set new colors for the template.
+\definecolor{mygray}{RGB}{230, 230, 230}
+\definecolor{myheadercolor}{RGB}{70, 130, 180}
+\usecolortheme[named=myheadercolor]{structure}
+
+% Set math font
+\usefonttheme[onlymath]{serif}
+
+% Set navigation headline and footline.
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamercolor{headlinecolor}{bg=myheadercolor}
+\setbeamertemplate{headline}{%
+    \leavevmode%
+    \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=3ex,dp=1.125ex,center]{headlinecolor}%
+        \insertsectionnavigationhorizontal{\paperwidth}{}{}
+    \end{beamercolorbox}%
+    }
+}
+
+\setbeamertemplate{footline}
+{ 
+\leavevmode% 
+\hbox{% 
+\begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%   
+\usebeamerfont{author in head/foot}\insertshortauthor%
+\end{beamercolorbox}% 
+
+\begin{beamercolorbox}[wd=.45\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%   
+\usebeamerfont{title in head/foot}\insertshorttitle%
+\end{beamercolorbox}% 
+
+\begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%  
+\usebeamerfont{date in head/foot}\insertshortdate \hspace*{7em}   
+\insertframenumber{}
+\hspace*{2ex}   
+\end{beamercolorbox}}% 
+\vskip0pt%
+}
+
+% Set beamer color for beamer objects.
+\setbeamercolor{title}{fg=myheadercolor, bg=mygray}
+\setbeamercolor{frametitle}{fg=myheadercolor, bg=mygray}
+
+\setbeamercolor{block title}{fg=white, bg=myheadercolor}
+\setbeamercolor{block body}{fg=black, bg=white}
+\setbeamercolor{itemize item}{fg=black}
+\setbeamercolor{itemize subitem}{fg=black!50}
+\setbeamercolor{itemize subsubitem}{fg=black!30}
+\setbeamercolor{author in head/foot}{bg=myheadercolor, fg=white}
+\setbeamercolor{title in head/foot}{bg=myheadercolor, fg=white}
+\setbeamercolor{date in head/foot}{bg=myheadercolor, fg=white}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[circle]
+
+% Adjust the frame title template
+\setbeamertemplate{frametitle}
+{
+    \nointerlineskip
+    \begin{beamercolorbox}[sep=0.3cm,ht=1.8em,wd=\paperwidth]{frametitle}
+        \vbox{}\vskip-2ex%
+        \strut\insertframetitle\strut
+        \vskip-0.8ex%
+    \end{beamercolorbox}
+}
+% End of all necessary preambles.
+
+% Title information.
+\title{beamer template}
+\subtitle{subtitle}
+\author{Hyoungchul Kim}
+\date{\today}
+\institute{The Wharton School, University of Pennsylvania}
+
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\section{section1}
+\begin{frame}{section}
+
+\begin{itemize}
+\item Asian Americans are the fastest growing racial group in the US
+    \begin{itemize}
+        \item Asian arrivals $\rightarrow$ white flight? white attraction?
+    \end{itemize}
+\end{itemize}
+
+\begin{enumerate}
+    \item 
+    \item 
+    \item 
+\end{enumerate}
+
+\begin{block}{block}
+    block
+\end{block}
+
+\hyperlink{contents}{\beamerbutton{button}}
+
+\end{frame}
+
+\begin{frame}{next section}\label{contents}
+    lorem ipsum
+\end{frame}
+
+\section{section2}
+
+\begin{frame}{section2}
+    lorem ipsum
+\end{frame}
+
+\section{section3}
+
+\begin{frame}{section3}
+    lorem ipsum
+\end{frame}
+
+\section{section4}
+
+\begin{frame}{section4}
+    lorem ipsum
+\end{frame}
+
+\end{document}
