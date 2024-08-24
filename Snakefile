@@ -2,25 +2,72 @@
 ##
 ## Hyoungchul Kim (ref:https://lachlandeer.github.io/snakemake-econ-r-tutorial/target-rules.html)
 
+MODELS = glob_wildcards("src/model-specs/{fname}.json").fname 
 
-# --- Final Target Rule --- #
+# note this filter is only needed coz we are running an older version of the src files, will be updated soon
+DATA_SUBSET = glob_wildcards("src/data-specs/{fname}.json").fname
+DATA_SUBSET = list(filter(lambda x: x.startswith("subset"), DATA_SUBSET))
 
-rule solow_target:
+PLOTS = glob_wildcards("src/figures/{fname}.R").fname
+
+TABLES = glob_wildcards("src/table-specs/{fname}.json").fname
+
+
+##############################################
+# TARGETS
+##############################################
+
+rule all:
     input:
-        intermediate = "out/analysis/model_solow_subset_intermediate.rds",
-        nonoil       = "out/analysis/model_solow_subset_nonoil.rds",
-        oecd         = "out/analysis/model_solow_subset_oecd.rds"
+        expand("out/figures/{iFigure}.pdf",
+                    iFigure = PLOTS),
+        expand("out/tables/{iTable}.tex",
+                    iTable = TABLES) 
 
-# --- OLS Rules --- #
-
-rule solow_intermediate:
+rule make_tables:
     input:
-        script   = "src/analysis/estimate_ols_model.R",
-        data     = "out/data/mrw_complete.csv",
-        model    = "src/model-specs/model_solow.json",
-        subset   = "src/data-specs/subset_intermediate.json"
+        expand("out/tables/{iTable}.tex",
+                iTable = TABLES)
+
+rule run_models:
+    input:
+        expand("out/analysis/{iModel}.{iSubset}.rds",
+                    iSubset = DATA_SUBSET,
+                    iModel = MODELS)
+
+rule make_figures:
+    input:
+        expand("out/figures/{iFigure}.pdf",
+                    iFigure = PLOTS)
+
+
+##############################################
+# INTERMEDIATE RULES
+##############################################
+
+# table: build one table
+rule table:
+    input:
+        script = "src/tables/regression_table.R",
+        spec   = "src/table-specs/{iTable}.json",
+        models = expand("out/analysis/{iModel}.{iSubset}.rds",
+                        iModel = MODELS,
+                        iSubset = DATA_SUBSET),
     output:
-        estimate = "out/analysis/model_solow_subset_intermediate.rds",
+        table = "out/tables/{iTable}.tex"
+    shell:
+        "Rscript {input.script} \
+            --spec {input.spec} \
+            --out {output.table}"
+
+rule model:
+    input:
+        script = "src/analysis/estimate_ols_model.R",
+        data   = "out/data/mrw_complete.csv",
+        model  = "src/model-specs/{iModel}.json",
+        subset = "src/data-specs/{iSubset}.json"
+    output:
+        estimate = "out/analysis/{iModel}.{iSubset}.rds"
     shell:
         "Rscript {input.script} \
             --data {input.data} \
@@ -28,48 +75,30 @@ rule solow_intermediate:
             --subset {input.subset} \
             --out {output.estimate}"
 
-rule solow_nonoil:
+rule figure:
     input:
-        script   = "src/analysis/estimate_ols_model.R",
-        data     = "out/data/mrw_complete.csv",
-        model    = "src/model-specs/model_solow.json",
-        subset   = "src/data-specs/subset_nonoil.json"
+        script = "src/figures/{iFigure}.R",
+        data   = "out/data/mrw_complete.csv",
+        subset = "src/data-specs/subset_intermediate.json"
     output:
-        estimate = "out/analysis/model_solow_subset_nonoil.rds",
+        fig = "out/figures/{iFigure}.pdf"
     shell:
         "Rscript {input.script} \
             --data {input.data} \
-            --model {input.model} \
             --subset {input.subset} \
-            --out {output.estimate}"
-
-rule solow_oecd:
-    input:
-        script   = "src/analysis/estimate_ols_model.R",
-        data     = "out/data/mrw_complete.csv",
-        model    = "src/model-specs/model_solow.json",
-        subset   = "src/data-specs/subset_oecd.json"
-    output:
-        estimate = "out/analysis/model_solow_subset_oecd.rds",
-    shell:
-        "Rscript {input.script} \
-            --data {input.data} \
-            --model {input.model} \
-            --subset {input.subset} \
-            --out {output.estimate}"
-
-
-# --- Data Management --- #
+            --out {output.fig}"
 
 rule gen_regression_vars:
     input:
         script = "src/data-management/gen_reg_vars.R",
-        data   = "out/data/mrw_renamed.csv"
+        data   = "out/data/mrw_renamed.csv",
+        param  = "src/data-specs/param_solow.json"
     output:
         data   = "out/data/mrw_complete.csv"
     shell:
         "Rscript {input.script} \
             --data {input.data} \
+            --param {input.param} \
             --out {output.data}"
 
 rule rename_vars:
@@ -84,7 +113,9 @@ rule rename_vars:
             --out {output.data}"
 
 
-# --- Clean Rules --- #
+##############################################
+# CLEANING RULES
+##############################################
 
 rule clean:
     shell:
