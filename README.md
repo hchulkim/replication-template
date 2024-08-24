@@ -40,7 +40,7 @@ $ snakemake --dry-run <RULE>
 $ snakemake -np <RULE>
 ```
 
-7. Run Snakefile using the code below to rerun your whole analysis.
+7. Run Snakefile using the code below to rerun your whole analysis. (If you need more information about how to run Snakefile, try Reproducible Data Analytic Workflows site linked in the Acknowledgement).
 
 ```console
 $ snakemake -c 1
