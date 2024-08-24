@@ -11,6 +11,7 @@ DATA_SUBSET = list(filter(lambda x: x.startswith("subset"), DATA_SUBSET))
 PLOTS = glob_wildcards("src/figures/{fname}.R").fname
 
 TABLES = glob_wildcards("src/table-specs/{fname}.json").fname
+PAPER_FILES  = glob_wildcards("src/paper/{fname}").fname
 
 
 ##############################################
@@ -19,10 +20,13 @@ TABLES = glob_wildcards("src/table-specs/{fname}.json").fname
 
 rule all:
     input:
-        expand("out/figures/{iFigure}.pdf",
-                    iFigure = PLOTS),
-        expand("out/tables/{iTable}.tex",
-                    iTable = TABLES) 
+        paper  = "out/paper/paper.pdf",
+        slides = "out/slides/slides.pdf"
+    output:
+        paper  = "paper.pdf",
+        slides = "slides.pdf"
+    shell:
+        "cp {input.paper} {output.paper} && cp {input.slides} {output.slides}"
 
 rule make_tables:
     input:
@@ -44,6 +48,32 @@ rule make_figures:
 ##############################################
 # INTERMEDIATE RULES
 ##############################################
+
+rule build_slides:
+    input:
+        script    = "src/lib/build_slides.R",
+        index     = "src/slides/slides.Rmd",
+        table     = "out/tables/table_06.tex",
+        figure    = "out/figures/unconditional_convergence.pdf",
+        preamble  = "src/slides/preamble.tex"
+    output:
+        pdf = "out/slides/slides.pdf"
+    shell:
+        "Rscript {input.script} --index {input.index} --output {output.pdf}" 
+
+rule build_paper:
+    input:
+        script = "src/lib/build_article.R",
+        paper  = expand("src/paper/{iPaper}",
+                          iPaper = PAPER_FILES),
+        figures = expand("out/figures/{iFigure}.pdf",
+                    iFigure = PLOTS),
+        tables  = expand("out/tables/{iTable}.tex",
+                    iTable = TABLES) 
+    output:
+        pdf = "out/paper/paper.pdf"
+    shell:
+        "Rscript {input.script} --index src/paper/index.Rmd"
 
 # table: build one table
 rule table:

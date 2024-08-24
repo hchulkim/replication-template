@@ -1,0 +1,45 @@
+---
+title: "Replicating MRW with Snakemake"
+subtitle: "A guide to workflow management"
+author:
+  - "Lachlan Deer$^1$"
+  - "Julian Langer$^1$"
+institute:
+   - $^1$University of Zurich
+date: "`r Sys.Date()`"
+output:
+  beamer_presentation:
+    latex_engine: xelatex
+    theme: "default"
+    colortheme: "default"
+    fonttheme: "default"
+    slide_level: 2
+    #keep_tex: TRUE
+---
+
+## Motivation
+
+* Understanding & implementing workflows is hard
+* We provide a guide to one alternative, 'Snakemake'
+
+* Practical Example: Replicating Mankiw, Romer & Weil's 1992 QJE
+
+## Another slide
+
+* Bullets
+    - Sub bullets
+    - *italic*
+    - **bold**
+
+1. Numbered Lists ...
+2. Can go like this
+
+## Adding a Table
+
+\input{../../out/tables/tab02_augment_solow.tex}
+
+## Adding a Figure
+
+```{r, echo = FALSE, fig.align = "center", out.width = '.70\\linewidth', fig.cap = "No Support for Unconditional Convergence"}
+knitr::include_graphics("../../out/figures/unconditional_convergence.pdf")
+```
