@@ -55,4 +55,4 @@ $ snakemake --dag targets | dot -Tpng > dag.png
 
 ## Acknowledge
 
-I adopted most of my replication work flow from the [Riffomonas Project](https://www.youtube.com/@Riffomonas). Thank you, Pat Schloss!
+I adopted most of my replication work flow from the [Riffomonas Project](https://www.youtube.com/@Riffomonas). Thank you, Pat Schloss! Also, most of my Snakemake-related materials and templates was adopted and built from [Reproducible Data Analytic Workflows with Snakemake and R](your work is derived from this tutorial and, where practical, linking to the material http://lachlandeer.github.io/snakemake-econ-r-tutorial) as well. Kudos to Bergmann, U, Deer, L and Langer, J!
