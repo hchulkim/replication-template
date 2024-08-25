@@ -1,4 +1,7 @@
-# big date
+# Mac related file
+.DS_store
+
+# big data
 src/
 
 # History files
