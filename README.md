@@ -3,6 +3,9 @@ replication-template
 
 This repository is my template for reproducible data analysis workflow. It employs tools from Snakemake, shell script, miniconda, etc. I intend to update it as I learn more efficient workflow.
 
+## Motivation
+
+Why do we need these tools? When you start writing huge and complicated projects, it is easy to get lost. This means you are more prone to making mistake in your data analysis. This could be very fatal to your work. Also, when your project becomes complicated, it is very likely that you do many redundant works that will cost you time. Thus, having reproducible data workflow allows us to avoid this and make your project credible and efficient.
 
 ## Tool setup
 
@@ -30,7 +33,7 @@ $ mamba env create -f config.yml
 
 4. **Make some bash files for automation**: Use bash files to download some files from the web, etc. I also have an example template for the bash file in the repository.
 
-5. **Make a Snakefile**: This is used as a script that runs some bash script. We use bash scripts to run automatic command in the terminal (e.g. downloading files, etc). Snakefile allows to make set of rules to implement this in a clear, reproducible way. You need to make **snakefile**. I also have an example template for the snakefile in the repository.
+5. **Make a Snakefile**: This is used as a script that runs some bash script. We use bash scripts to run automatic command in the terminal (e.g. downloading files, etc). Snakefile allows to make set of rules to implement this in a clear, reproducible way. Snakefile can also run R scripts or other programming scripts. To do this, you need to make **snakefile**. I also have an example template for the snakefile in the repository.
 
 6. Check if the Snakefile is well defined using the code below:
 
