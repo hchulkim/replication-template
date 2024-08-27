@@ -5,7 +5,7 @@ channels:
   - defaults
   - R
 dependencies:
-  - r-base=4.3
+  - r-base=4.3.3
   - r-tidyverse=2.0.0
   - r-here=1.0.1
   - r-fixest=0.12.1
@@ -17,3 +17,4 @@ dependencies:
   - wget=1.20.3
   - snakemake=8.18.2
   - graphviz=5.0.1
+  - python=3.12.3
