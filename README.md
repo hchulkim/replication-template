@@ -1,7 +1,7 @@
 replication-template
 ================
 
-This repository is my template for reproducible data analysis workflow. It employs tools from Snakemake, shell script, miniconda, etc. I intend to update it as I learn more efficient workflow.
+This repository is my template for reproducible data analysis workflow. It employs tools from Snakemake, shell script, miniconda, poetry (from python) etc. I intend to update it as I learn more efficient workflow.
 
 ## Motivation
 
@@ -11,7 +11,7 @@ Why do we need these tools? When you start writing huge and complicated projects
 
 In order to use this workflow, we need to install and setup some programs and files. Note that the goal of the setup is to use conda to make a separate environment where we store all the packages and dependencies used in the analysis to ensure reproducibility.
 
-1. **miniconda installation**: We need miniconda to set up separate environment to store all our necessary packages and dependencies.
+1. **miniconda installation**: We need miniconda to set up separate environment to store all our necessary packages and dependencies in R (and also python version).
 
 ```console
 # Remember to first download the .sh installer from miniconda website.
@@ -31,11 +31,30 @@ $ conda install -n base -c conda-forge mamba
 $ mamba env create -f config.yml
 ```
 
-4. **Make some bash files for automation**: Use bash files to download some files from the web, etc. I also have an example template for the bash file in the repository.
+4. **Activate the conda environment**
 
-5. **Make a Snakefile**: This is used as a script that runs some bash script. We use bash scripts to run automatic command in the terminal (e.g. downloading files, etc). Snakefile allows to make set of rules to implement this in a clear, reproducible way. Snakefile can also run R scripts or other programming scripts. To do this, you need to make **snakefile**. I also have an example template for the snakefile in the repository.
+```console
+$ conda activate <ENVIRONMENT_NAME>
+```
 
-6. Check if the Snakefile is well defined using the code below:
+5. **Run "poetry init" in the project directory to get the necessary package versions and dependencies for python packages**:
+
+```console
+# go to the project directory and use the command below to set up poetry:
+$ poetry init
+
+# you can add new packages using the following code:
+$ poetry add <PACKAGE_NAME>
+
+# if other people want to use the correct versions and dependencies for the python packages, they can use following code to have it installed from lock file:
+$ poetry install
+```
+
+6. **Make some bash files for automation**: Use bash files to download some files from the web, etc. I also have an example template for the bash file in the repository.
+
+7. **Make a Snakefile**: This is used as a script that runs some bash script. We use bash scripts to run automatic command in the terminal (e.g. downloading files, etc). Snakefile allows to make set of rules to implement this in a clear, reproducible way. Snakefile can also run R scripts or other programming scripts. To do this, you need to make **snakefile**. I also have an example template for the snakefile in the repository.
+
+8. Check if the Snakefile is well defined using the code below:
 
 ```console
 # Use one of these two code
@@ -43,17 +62,19 @@ $ snakemake --dry-run <RULE>
 $ snakemake -np <RULE>
 ```
 
-7. Run Snakefile using the code below to rerun your whole analysis. (If you need more information about how to run Snakefile, try Reproducible Data Analytic Workflows site linked in the Acknowledgement).
+9. **Run Snakefile** using the code below to rerun your whole analysis. (If you need more information about how to run Snakefile, try Reproducible Data Analytic Workflows site linked in the Acknowledgement).
 
 ```console
-$ snakemake -c 1
+$ snakemake --cores 1
 ```
 
-8. **Make DAG graph** using the following code:
+10. **Make DAG graph** using the following code:
 
 ```console
 $ snakemake --dag targets | dot -Tpng > dag.png
 ```
+
+11. You might consider using **Docker** to fully ensure that you have the necessary operating system environment to replicate the code.
 
 
 ## Acknowledge
