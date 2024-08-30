@@ -3,6 +3,10 @@ replication-template
 
 This repository is my template for reproducible data analysis workflow. It employs tools from Snakemake, shell script, miniconda, poetry (from python) etc. I intend to update it as I learn more efficient workflow.
 
+## Words of caution
+
+While this repository has a setup guide, this should be considered as a collection of resources for the reproduble workflow. What I mean by this is that there are some parts that might not work that well. I advise you to use this template resource by just taking a subset of it. For example, I have not used Docker yet so anything written in this README.md about Docker is just a mere suggestion. Also, there might be some issues as I use conda, poetry, snakemake altogether. So far there has not been an issue at least on my end but you can never be sure. What I am doing below is basically creating virtual environment using conda (mamba) and use config.yml to get specific version of base R, R packages and Python. Then I use poetry to install and record python packages I am using. I am trying to use poetry because conda cannot keep track of the dependences of the dependencies and packages from pip. For now I do not have separate poetry package in config.yml because I heard from somewhere that this could create issues. 
+
 ## Motivation
 
 Why do we need these tools? When you start writing huge and complicated projects, it is easy to get lost. This means you are more prone to making mistake in your data analysis. This could be very fatal to your work. Also, when your project becomes complicated, it is very likely that you do many redundant works that will cost you time. Thus, having reproducible data workflow allows us to avoid this and make your project credible and efficient.
