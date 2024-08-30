@@ -18,3 +18,22 @@ dependencies:
   - snakemake=8.18.2
   - graphviz=5.0.1
   - python=3.12.3
+  - pip
+  - pyyaml
+  - scikit-learn
+  - scipy
+  - seaborn
+  - statsmodels
+  - tqdm
+  - yaml
+  - pycodestyle
+  - numpy
+  - pandas
+  - matplotlib
+  - jupyter
+  - pip:
+    - jupyter-book
+    - specification_curve
+    - ghp-import
+    - pandas-profiling
+    -networkx
