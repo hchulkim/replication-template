@@ -78,7 +78,7 @@ $ snakemake --cores 1
 $ snakemake --dag targets | dot -Tpng > dag.png
 ```
 
-11. You might consider using **Docker** to fully ensure that you have the necessary operating system environment to replicate the code. The way to pull this off might not be easy since we are using conda + poetry + docker. But there are some resources (e.g. [resource1](https://medium.com/@chadlagore/conda-environments-with-docker-82cdc9d25754), [resource2](https://pythonspeed.com/articles/activate-conda-dockerfile/), [resource3](https://github.com/michaeloliverx/python-poetry-docker-example), [resource4](https://stackoverflow.com/questions/55123637/activate-conda-environment-in-docker)) that seem to hint that it will work. I will try it later. For now, this part seems a bit of an overkill.
+11. You might consider using **Docker** to fully ensure that you have the necessary operating system environment to replicate the code. The way to pull this off might not be easy since we are using conda + poetry + docker. But there are some resources (e.g. [resource1](https://medium.com/@chadlagore/conda-environments-with-docker-82cdc9d25754), [resource2](https://pythonspeed.com/articles/activate-conda-dockerfile/), [resource3](https://github.com/michaeloliverx/python-poetry-docker-example), [resource4](https://stackoverflow.com/questions/55123637/activate-conda-environment-in-docker), [resource5](https://pythonspeed.com/articles/activate-conda-dockerfile/), [resource6](https://medium.com/@chadlagore/conda-environments-with-docker-82cdc9d25754)) that seem to hint that it will work. I will try it later. For now, this part seems a bit of an overkill.
 
 
 ## Acknowledge
