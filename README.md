@@ -62,7 +62,7 @@ This is when you need **Make**. **Make** is basically a tool that records your a
 
 1. **Install Make**: Fortunately, Make is already installed in most of ubuntu. I am not sure about Mac or Windows. In case you cannot use it in other OS, try **Snakemake**. This is Python based tool that works similar to that of Make but have much better functions. The only reason I am not using it is because I have to use conda to install it which I feel can be bit of a nuisance when using Docker later. Also, you can use **targets** which is a R package that does similar things. I will not elaborate on these since I will not be using it for my workfllow.
 
-### TBD
+TBD
 
 ### End of the workflow
 
@@ -102,9 +102,31 @@ sudo docker run hello-world
 
 3. **Build Docker image**
 
+```console
+sudo docker build --network=host --tag <PROJECT_NAME>:VERSION .
+```
+
 4. **Run Docker image**
 
-   TBD
+```console
+sudo docker run -it --rm <PROJECT_NAME>:VERSION
+```
+
+5. Some useful docker commands
+
+```console
+# check cached docker images
+sudo docker images
+
+# check docker containers that are running
+sudo docker ps
+
+# remove the docker image
+sudo docker rmi <IMAGE_NAME>
+
+# remove all dangling images and caches (do it periodically to save space)
+sudo docker system prune
+```
 
 ## What if I use Python or Julia?
 
