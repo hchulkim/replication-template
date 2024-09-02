@@ -50,6 +50,8 @@ renv::init()
 
 #### Option 2: nix
 
+TBD as I don't think I need to go this far for now.
+
 ### Mid-part of the workflow
 
 This is a stage in your workflow where you have done significant amount of work on the research topic because you feel it is something worth looking into and there are some interesting results.
@@ -96,9 +98,13 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo docker run hello-world
 ```
 
-2. Create a **Dockerfile**: I have a sample Dockerfile in the repository. Check it out.
+2. Create a **Dockerfile**: I have a sample Dockerfile in the repository. Check it out. I will not thoroughly explain what each commands mean in the Dockerfile. You can instead try ...
 
-3. **TBD**
+3. **Build Docker image**
+
+4. **Run Docker image**
+
+   TBD
 
 ## What if I use Python or Julia?
 
