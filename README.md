@@ -23,6 +23,8 @@ This is just the starting part of my workflow. Normally this would mean I have s
 
 But still, there are somethings you could do to make your life easier in the future: 
 
+#### Option 1: Renv package in R
+
 1. **Use renv R-package**: "Renv" package records the versions of the R packages you use to ensure reproducibility. You can install by using this code in the R console.
 
 ```{r}
@@ -46,6 +48,8 @@ renv::init()
 
 4. The only caveat is that renv package does not track the version of R itself. We will later tackle this using Docker.
 
+#### Option 2: nix
+
 ### Mid-part of the workflow
 
 This is a stage in your workflow where you have done significant amount of work on the research topic because you feel it is something worth looking into and there are some interesting results.
@@ -54,7 +58,7 @@ This is about time you start constructing a more consistent flow for your projec
 
 This is when you need **Make**. **Make** is basically a tool that records your acyclic workflow to ensure reproducibility. If you want to know more about it, check out Professor Dingel's advice on [build automation](https://tradediversion.net/2019/11/06/why-your-research-project-needs-build-automation/).
 
-1. **Install Make**: Fortunately, Make is already installed in most of ubuntu. I am not sure about Mac or Windows. In case you cannot use it in other OS, try **Snakemake**. This is Python based tool that works similar to that of Make but have much better functions. The only reason I am not using it is because I have to use conda to install it which I feel can be bit of a nuisance when using Docker later.
+1. **Install Make**: Fortunately, Make is already installed in most of ubuntu. I am not sure about Mac or Windows. In case you cannot use it in other OS, try **Snakemake**. This is Python based tool that works similar to that of Make but have much better functions. The only reason I am not using it is because I have to use conda to install it which I feel can be bit of a nuisance when using Docker later. Also, you can use **targets** which is a R package that does similar things. I will not elaborate on these since I will not be using it for my workfllow.
 
 ### TBD
 
