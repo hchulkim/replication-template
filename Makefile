@@ -1,10 +1,21 @@
 # Makefile for analysis report
+#
 
-output/figure_1.png: data/input_file_1.csv scripts/generate_histogram.py
-	python scripts/generate_histogram.py -i data/input_file_1.csv -o output/figure_1.png
+ALL_CSV = $(wildcard data/*.csv)
+INPUT_CSV = $(wildcard data/input_file_*.csv)
+DATA = $(filter-out $(INPUT_CSV),$(ALL_CSV))
+FIGURES = $(patsubst data/%.csv,output/figure_%.png,$(DATA))
 
-output/figure_2.png: data/input_file_2.csv scripts/generate_histogram.py
-	python scripts/generate_histogram.py -i data/input_file_2.csv -o output/figure_2.png
+.PHONY: all clean
 
-output/report.pdf: report/report.tex output/figure_1.png output/figure_2.png
-	cd report/ && pdflatex report.tex && mv report.pdf ../output/report.pdf
+all: output/report.pdf
+
+$(FIGURES): output/figure_%.png: data/%.csv scripts/generate_histogram.py
+	python scripts/generate_histogram.py -i $< -o $@
+
+output/report.pdf: report/report.tex $(FIGURES)
+	cd report/ && pdflatex report.tex && mv report.pdf ../$@
+
+clean:
+	rm -f output/report.pdf
+	rm -f $(FIGURES)
