@@ -98,7 +98,13 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo docker run hello-world
 ```
 
-2. Create a **Dockerfile**: I have a sample Dockerfile in the repository. Check it out. I will not thoroughly explain what each commands mean in the Dockerfile. You can instead try ...
+2. Create a **Dockerfile**: I have a sample Dockerfile in the repository. Check it out. I will not thoroughly explain what each commands mean in the Dockerfile. You can check out some manuals online.  Also, you might need to run the code below  since sometimes OS like linux needs to have some system dependencies installed. Check this website for reference: [ref](https://packagemanager.posit.co/client/#/). 
+
+```console
+apt-get update && apt-get install -y \
+    libglpk-dev \
+    libxml2-dev
+```
 
 3. **Build Docker image**
 
