@@ -1,21 +1,13 @@
 # Makefile for analysis report
 #
 
-ALL_CSV = $(wildcard data/*.csv)
-INPUT_CSV = $(wildcard data/input_file_*.csv)
-DATA = $(filter-out $(INPUT_CSV),$(ALL_CSV))
-FIGURES = $(patsubst data/%.csv,output/figure_%.png,$(DATA))
-
 .PHONY: all clean
 
-all: output/report.pdf
+all: output/tables/processed_data.rds
 
-$(FIGURES): output/figure_%.png: data/%.csv scripts/generate_histogram.py
-	python scripts/generate_histogram.py -i $< -o $@
 
-output/report.pdf: report/report.tex $(FIGURES)
-	cd report/ && pdflatex report.tex && mv report.pdf ../$@
+output/tables/processed_data.rds: input/data/raw_data.rds input/code/test.R
+	cd input/code && Rscript test.R
 
 clean:
-	rm -f output/report.pdf
-	rm -f $(FIGURES)
+	rm -f output/tables/*
