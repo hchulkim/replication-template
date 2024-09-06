@@ -140,7 +140,11 @@ There can be a problem if you are not just using R for analysis. This is quite c
 
 ### TBD
 
-## Outdated
+## Example
+
+For simple trial and error, I made a basic folder which contains basic template to use Docker and run Make. Use the method above to build and run Docker images. Also, you will be able to create a simple rds file by running Make. The only struggle I have now is that `renv::restore()` seems to be not working well. In this basic template, I removed the part about renv in the Dockerfile. I will later check how to run it directly in the Dockerfile. For now, you will have to run `renv::restore()` after running the Docker image.
+
+## Outdated (Just for reference)
 
 1. **miniconda installation**: We need miniconda to set up separate environment to store all our necessary packages and dependencies in R (and also python version).
 
