@@ -136,9 +136,7 @@ sudo docker system prune
 
 ## What if I use Python or Julia?
 
-There can be a problem if you are not just using R for analysis. This is quite common for researchers.
-
-### TBD
+There can be a problem if you are not just using R for analysis. This is quite common for researchers. This is not a problem; we can install Python and Julia using Dockerfile. You can check how to do this using the Dockerfile template on this repository.
 
 ## Example
 
