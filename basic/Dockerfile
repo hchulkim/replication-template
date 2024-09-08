@@ -29,8 +29,12 @@ RUN /rocker_scripts/install_pandoc.sh
 ## Install Python /reticulate
 RUN /rocker_scripts/install_python.sh
 
-## Install numpy
+## Install Python packages 
 RUN pip3 install numpy
+
+## Install Julia. We'll use Abel Siqueira's handy JILL script to do this.
+RUN wget https://raw.githubusercontent.com/abelsiqueira/jill/master/jill.sh
+RUN bash jill.sh --no-confirm --version 1.5.0
 
 ## Go to main project root
 WORKDIR /basic
@@ -38,19 +42,22 @@ WORKDIR /basic
 ## Copy renv.lock file into the folder
 COPY renv.lock .
 
-# Set environment variables for renv to avoid bootstrapping issues
+# Set environment variables for renv
 ENV RENV_VERSION 1.0.7
 ENV RENV_PATHS_CACHE /renv/cache
 ENV RENV_CONFIG_REPOS_OVERRIDE https://cloud.r-project.org
 ENV RENV_CONFIG_AUTOLOADER_ENABLED FALSE
 ENV RENV_WATCHDOG_ENABLED FALSE
+RUN echo "options(renv.consent = TRUE)" >> .Rprofile
+RUN echo "options(RETICULATE_MINICONDA_ENABLED = FALSE)" >> .Rprofile
+
 
 # Install renv from CRAN (avoiding bootstrapping by specifying version)
 RUN R -e "install.packages('renv', repos = c(CRAN = 'https://cloud.r-project.org'))"
 RUN R -e "renv::consent(provided = TRUE)"
 
 # Run renv restore to restore the environment
-RUN R -e "renv::restore()"
+RUN R -e "renv::restore(confirm = FALSE)"
 
 ## Copy over the rest of the data and scripts
 COPY . .
