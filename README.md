@@ -144,4 +144,4 @@ For simple trial and error, I made a basic folder that contains a basic template
 
 ## Acknowledge
 
-I adopted most of my replication workflow from the [Riffomonas Project](https://www.youtube.com/@Riffomonas). Thank you, Pat Schloss! Also, most of my Snakemake-related materials and templates were adopted and built from [Reproducible Data Analytic Workflows with Snakemake and R](http://lachlandeer.github.io/snakemake-econ-r-tutorial) as well. Kudos to Bergmann, U, Deer, L and Langer, J!
+I adopted most of my replication workflow from the [Riffomonas Project](https://www.youtube.com/@Riffomonas). Thank you, Pat Schloss! Also, most of my Snakemake-related materials and templates were adopted and built from [Reproducible Data Analytic Workflows with Snakemake and R](http://lachlandeer.github.io/snakemake-econ-r-tutorial) as well. Kudos to Bergmann, U, Deer, L and Langer, J! Kudos to Professor Dingel as well as I have learn so much from his website on build automation. 
