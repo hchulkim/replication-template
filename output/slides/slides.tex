@@ -1,0 +1,314 @@
+\documentclass[11pt, aspectratio=169]{beamer}
+
+\usepackage{pgfpages}
+
+\usepackage{helvet}
+\usepackage[default]{lato}
+\usepackage[T1]{fontenc}
+\usepackage[ansinew]{inputenc}
+\usepackage{array}
+
+
+\usepackage{tikz}
+\usepackage{verbatim}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{matrix,shapes,arrows,fit,tikzmark}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{multimedia}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{dcolumn}
+\usepackage{bbm}
+\newcolumntype{d}[0]{D{.}{.}{5}}
+
+\usepackage{changepage}
+\usepackage{appendixnumberbeamer}
+\newcommand{\beginbackup}{
+   \newcounter{framenumbervorappendix}
+   \setcounter{framenumbervorappendix}{\value{framenumber}}
+   \setbeamertemplate{footline}
+   {
+     \leavevmode%
+     \hline
+     box{%
+       \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{footlinecolor}%
+%         \insertframenumber  \hspace*{2ex} 
+       \end{beamercolorbox}}%
+     \vskip0pt%
+   }
+ }
+\newcommand{\backupend}{
+   \addtocounter{framenumbervorappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumbervorappendix}} 
+}
+
+
+\usepackage{graphicx}
+\usepackage[space]{grffile}
+\usepackage{booktabs}
+
+% These are my colors -- there are many like them, but these ones are mine.
+\definecolor{blue}{RGB}{0,114,178}
+\definecolor{red}{RGB}{213,94,0}
+\definecolor{yellow}{RGB}{240,228,66}
+\definecolor{green}{RGB}{0,158,115}
+
+\hypersetup{
+  colorlinks=false,
+  linkbordercolor = {white},
+  linkcolor = {blue}
+}
+
+%% I use a beige off white for my background
+\definecolor{MyBackground}{RGB}{255,253,218}
+
+%% Uncomment this if you want to change the background color to something else
+%\setbeamercolor{background canvas}{bg=MyBackground}
+
+%% Change the bg color to adjust your transition slide background color!
+\newenvironment{transitionframe}{
+  \setbeamercolor{background canvas}{bg=yellow}
+  \begin{frame}}{
+    \end{frame}
+}
+
+\setbeamercolor{frametitle}{fg=blue}
+\setbeamercolor{title}{fg=black}
+%\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{itemize items}{-}
+\setbeamercolor{itemize item}{fg=blue}
+\setbeamercolor{itemize subitem}{fg=blue}
+\setbeamercolor{enumerate item}{fg=blue}
+\setbeamercolor{enumerate subitem}{fg=blue}
+\setbeamercolor{button}{bg=MyBackground,fg=blue,}
+
+
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \ifnum\value{framenumber}>0
+    \hfill%
+    \usebeamercolor[fg]{page number in head/foot}%
+    \raisebox{1.5ex}{\hspace{1em} \insertframenumber}%
+    \hspace{2em} % Adjust spacing as needed
+  \fi
+}
+% If you like road maps, rather than having clutter at the top, have a roadmap show up at the end of each section 
+% (and after your introduction)
+% Uncomment this is if you want the roadmap!
+% \AtBeginSection[]
+% {
+%    \begin{frame}
+%        \frametitle{Roadmap of Talk}
+%        \tableofcontents[currentsection]
+%    \end{frame}
+% }
+\setbeamercolor{section in toc}{fg=blue}
+\setbeamercolor{subsection in toc}{fg=red}
+\setbeamersize{text margin left=1em,text margin right=1em} 
+
+\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{10pt}}{\enditemize}
+
+\title[]{\textcolor{blue}{Tips + Tricks with Beamer for Economists}}
+\author{Hyoungchul Kim}
+\institute{Wharton UPenn}
+%\institute{\small{\begin{tabular}{c c c}
+%Author A &&  Paul Goldsmith-Pinkham  \\
+%Somewhere Fancy && FRBNY \\ \\
+%
+%Author C && Author D   \\
+%\multicolumn{3}{c}{Somewhere Fancy} \\
+%\end{tabular}}}
+\date{\today}
+
+
+\begin{document}
+
+%%% TIKZ STUFF
+\tikzset{   
+        every picture/.style={remember picture,baseline},
+        every node/.style={anchor=base,align=center,outer sep=1.5pt},
+        every path/.style={thick},
+        }
+\newcommand\marktopleft[1]{%
+    \tikz[overlay,remember picture] 
+        \node (marker-#1-a) at (-.3em,.3em) {};%
+}
+\newcommand\markbottomright[2]{%
+    \tikz[overlay,remember picture] 
+        \node (marker-#1-b) at (0em,0em) {};%
+}
+\tikzstyle{every picture}+=[remember picture] 
+\tikzstyle{mybox} =[draw=black, very thick, rectangle, inner sep=10pt, inner ysep=20pt]
+\tikzstyle{fancytitle} =[draw=black,fill=red, text=white]
+%%%% END TIKZ STUFF
+
+% Title Slide
+\begin{frame}
+\maketitle
+\addtocounter{framenumber}{-1} % Ensure numbering starts from 1 after title
+\end{frame}
+
+\section{Color}
+\begin{transitionframe}
+  \begin{center}
+    { \Huge \textcolor{black}{Color}}
+  \end{center}
+\end{transitionframe}
+
+\begin{frame}[fragile]{I use two to three colors regularly throughout my presentations}
+  \begin{wideitemize}
+    \item[-] I use the \textcolor{blue}{blue} color everywhere
+    \item[-] I use \textcolor{red}{red}  to contrast and emphasize
+    \item[-] I use \textcolor{green}{green}  as a backup
+    \item[-] I use \textcolor{yellow}{yellow}  as a transition color
+  \end{wideitemize}
+\medskip
+Make your own color wheel palette!  \url{https://www.sessions.edu/color-calculator/}\\
+\end{frame}
+
+\begin{frame}{Background color: I'm undecided}
+  \begin{wideitemize}
+    \item Changing the background color makes it easier to read
+    \item Make your figures in R or Stata have the same background color 
+      \begin{itemize}
+      \item[] (Or transparent)
+      \end{itemize}
+    \item In auditoriums \textcolor{red}{large}, go black background with white text \end{wideitemize}
+\end{frame}
+
+{  \setbeamercolor{background canvas}{bg=black}
+\begin{frame}
+  \textcolor{white}{Example for an auditorium -- contrast is much higher}
+\end{frame}
+}
+
+\begin{frame}[fragile]{Fitting figures doesn't have to be painful}
+  \begin{wideitemize}
+    \item Simple commands to fit figures: 
+    \begin{verbatim}
+    \resizebox{0.7\linewidth}{!}{
+      \includegraphics{figure1_effect.pdf}}
+    \end{verbatim}
+    \item The \texttt{\textbackslash linewidth} number is defined within an environment
+    \item Simply center with a \texttt{center} environment
+  \end{wideitemize}
+\end{frame}
+
+
+\section{Tables}
+\begin{transitionframe}
+  \begin{center}
+    \Huge Tables
+  \end{center}
+\end{transitionframe}
+\begin{frame}[fragile]{Fitting tables doesn't have to be painful}
+  \begin{wideitemize}
+    \item Simple commands to fit table and center: 
+    \begin{verbatim}
+\makebox[\linewidth][c]{
+\begin{tabular}{l cc ddd}
+  results...
+\end{tabular}
+    \end{verbatim}
+    \item Don't use the \texttt{table} environment
+    \item If you don't want to center, use change \texttt{[c]} to \texttt{[l]}
+  \end{wideitemize}
+\end{frame}
+
+\begin{frame}{Highlight cells using tikz (see source code)}
+\makebox[\linewidth][c]{
+\begin{tabular}{l cc ddd}
+  \toprule
+  &  Mean at && \multicolumn{3}{c}{Difference-in-Differences Estimates} \\
+  \cmidrule{4-6}
+  & $ t=-1 $ &&\multicolumn{1}{c}{1 Year} & \multicolumn{1}{c}{2 Years} & \multicolumn{1}{c}{3 Years} \\
+  \cmidrule{2-2} \cmidrule{4-6}
+  & \multicolumn{1}{c}{(1)}  &&\multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)} & \multicolumn{1}{c}{(4)} \\
+  \cmidrule{2-6}
+  Outcome 1 & 2.58 && 0.11 &0.08 &\marktopleft{a1} 0.12\\
+  & (2.55) && (0.04) & (0.04) & (0.04)\\ 
+  Outcome 2 & 60.90 && -0.73 &-1.13 & -1.58\\
+  & (17.02) && (0.10) & (0.11) & (0.12)\markbottomright{a1}{red} \\
+  Outcome 3 & 18.98 && 0.77 &1.28 & 1.62\\
+  & (6.74) && (0.13) & (0.13) & (0.12)\\ 
+  \bottomrule
+\end{tabular}
+}
+\uncover<2->{\tikz[overlay,remember picture,inner sep=1pt]
+\node[draw=red,rounded corners,fit=(marker-a1-a.north west) (marker-a1-b.south east)] {};}
+\end{frame}
+
+\section{Dummy Frames}
+\begin{transitionframe}
+  \begin{center}
+    \Huge Dummy Frames
+  \end{center}
+\end{transitionframe}
+
+\begin{frame}{Two Column Frame}
+\begin{columns}[T] % align columns
+\begin{column}{.58\textwidth}
+\color{red}\rule{\linewidth}{4pt}
+Column 1
+\end{column}%
+\hfill%
+\begin{column}{.38\textwidth}
+\color{blue}\rule{\linewidth}{4pt}
+Column 2
+\end{column}%
+\end{columns}
+\end{frame}
+
+\begin{frame}{Consider making your math prettier}
+  \begin{wideitemize}
+    \item Don't overdo it when putting up equations\\(either regressions or theorems)
+    \item Try adding color and text to highlight the relevant formula
+    \item Consider (Imbens and Angrist 1994): 
+      \begin{equation*}
+        \alpha_{g}^{IV} = \left. \underbrace{Cov(Y, g(\textcolor{blue}{Z}))}_{\text{\textcolor{red}{Reduced Form}}} \middle/ \underbrace{Cov(D, g(\textcolor{blue}{Z}))}_{\text{\textcolor{green}{First Stage}}} \right.
+      \end{equation*}
+  \end{wideitemize}
+\end{frame}
+
+
+\begin{frame}{Almost done!}
+  \begin{wideitemize}
+  \item Use the \texttt{\textbackslash appendix} command to restart the numbering
+  \item The frame counter says this is the last slide, but it's not
+  \item (Test it, see you on next page)
+  \end{wideitemize}
+\end{frame}
+
+\appendix
+
+\begin{frame}[label=appendix_start]{Almost done!}
+  \begin{wideitemize}
+  \item See, now we're in backup slide land
+  \item This is made useful by having links throughtout the talk
+  \item Here's a button, which is how I make links \hyperlink{appendix_end}{\beamergotobutton{Next slide}}
+  \end{wideitemize}
+\end{frame}
+
+\begin{frame}[label=appendix_end]{Use it to intimidate audiences!}
+  \begin{wideitemize}
+    \item[] Now you can make it clear you've done a shitload of work
+      \begin{itemize}
+      \item[]  without having to show everything! \hyperlink{appendix_start}{\beamergotobutton{Back}}
+      \end{itemize}
+    \item[] You label a frame with the \texttt{[label=name]} option, and then point a link to it
+    \item[] You can make an object a link using the \texttt{\textbackslash hyperlink\{label\}\{object\}} command
+  \end{wideitemize}
+\end{frame}
+
+
+
+\end{document}
