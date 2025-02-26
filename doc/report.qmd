@@ -1,6 +1,6 @@
 
 ---
-title: "Problem Set 1"
+title: "Report"
 author: "Hyoungchul Kim"
 date: "`r Sys.Date()`"
 output:
