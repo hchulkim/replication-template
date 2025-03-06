@@ -1,14 +1,13 @@
-
 ---
-title: "Report"
+title: "report"
 author: "Hyoungchul Kim"
-date: today 
-output:
-  pdf_document:
-    number_sections: true
-    toc: true
-    toc_depth: 2
+date: today
 format: 
+  html:
+    toc: true
+    number-sections: true
+    keep-html: true
+    code-overflow: wrap
   pdf:
     keep-tex: true
     include-in-header: 
@@ -18,52 +17,56 @@ format:
          \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
 ---
 
-## 1.
+# Lorem ipsum
 
-We will use the fact that in optimal policy, $\frac{\partial \mathcal{L}}{\partial t} = 0$.
+## Bullet point
 
-\begin{align}
-  0 &= \frac{\partial \mathcal{L}}{\partial t}\\
-    &= - \int_i G' \left( U'_{ic} \left( \frac{\partial z_i}{\partial t} - z_i - t \frac{\partial z_i}{\partial t}\right) + U'_{iz} \frac{\partial z_i}{\partial t} \right)dv(i) + \lambda \int_i \left( z_i + t \frac{\partial z_i}{\partial t} \right)dv(i)\\
-    &= - \int_i z_i U'_{ic} G' dv(i) + \lambda \int_i \left( z_i + t \frac{\partial z_i}{\partial t} \right)dv(i)
-\end{align}
+This is a template for my report.
 
-Rearranging and using $g_i$ and $\varepsilon_i$, we get:
+1. Lorem.
 
-$$
-\int_i g_i z_i dv(i) = \int_i \left( z_i - \varepsilon_i \frac{t}{1-t} z_i \right)dv(i).
-$$
+- Lorem.
 
-After using the fact that $\varepsilon_i = \varepsilon^c_i = \eta_i$ and $g_i + \frac{t}{1-t} \eta_i = \tilde{g}_i$, we can simplify the equation to:
+## Math equations
 
-$$
-  \int_i \tilde{g}_i z_i dv(i) = \int_i \left( z_i - \varepsilon^c_i \frac{t}{1-t} z_i \right)dv(i) \Rightarrow - \int_i \varepsilon^c_i \frac{t}{1-t}z_i dv(i) = \int_i \tilde{g}_i z_i - z_i dv(i).
-$$
+This is a latex math-equation using *align*.
 
-Since expectation of $\tilde{g}_i$ is 1, we can denote the right hand side of the equation as $\text{Cov} (\tilde{g}_i, z_i)$. Then assuming elasticity is same for everyone, we can get the equation in the question 7.
+\begin{align*}
+  (1) + (2) + (3) \geq 3
+\end{align*}
 
-# Part 2: Numerical application
+--
+
+## Code block
+
+This is a code block.
 
 ```{r}
-#| echo: true
-#| warning: false 
- 
-# Load libraries
-library(tidyverse)
-library(gt)
-
-# Given parameters
-t <- 0.3  # Current tax rate
-b <- 5000 # Lump-sum benefit
-
-```
-
-```{r}
-#| echo: true
+#| warning: false
 #| message: false
-#| warning: false 
 
-implied_ability <- map(c(20000, 50000, 200000), ~ (.x / (1-t)^0.3)^(1/1.3)) |>
-  bind_cols() |>
-  rename_with(~ c("low", "middle", "high")) |> print() 
+library(fixest)
+  mods = feols(
+  rating ~ complaints + privileges + learning + csw0(raises + critical), data = attitude
+)
+
+dict = c("rating"     = "Overall Rating",
+         "complaints" = "Handling of Complaints",
+         "privileges" = "No Special Priviledges",
+         "learning"   = "Opportunity to Learn",
+         "raises"     = "Performance-Based Raises",
+         "critical"   = "Too Critical")
+
+library(modelsummary) # Make sure you have >=v2.0.0
+
+modelsummary(
+  setNames(mods, c("(1)", "(2)")),
+  coef_map = dict, stars = TRUE,
+  gof_map = NA
+  ) |>
+  # some optional stylistic tweaks
+  tinytable::group_tt(j = list("Dep. variable: Overall Rating" = 2:3)) |>
+  tinytable::style_tt(i = 1:2, j = 2:3, background = "pink")
 ```
+
+
