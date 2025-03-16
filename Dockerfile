@@ -1,3 +1,4 @@
+# Use Rocker image as the base for R
 FROM rocker/r-ver:4.4.0
 
 LABEL maintainer="Hyoungchul Kim <hchul.kim96@gmail.com>"
@@ -22,23 +23,29 @@ RUN apt-get update && apt-get install -y \
 	libsqlite3-dev \
 	libssh2-1-dev \
 	libxt-dev \
-	libgdal-dev
+	libgdal-dev \
+	wget \
+	curl \
+	git	
 
-## Install Pandoc
+## Install Pandoc (Required for RMarkdown, Quarto, etc.)
 RUN /rocker_scripts/install_pandoc.sh
 
-## Install Python /reticulate
-RUN /rocker_scripts/install_python.sh
-
-## Install Python packages 
-RUN pip3 install numpy
+## Install Python & Poetry
+RUN /rocker_scripts/install_python.sh && \
+	pip3 install --upgrade pip && \
+	pip3 install poetry
 
 ## Install Julia. We'll use Abel Siqueira's handy JILL script to do this.
 RUN wget https://raw.githubusercontent.com/abelsiqueira/jill/master/jill.sh
 RUN bash jill.sh --no-confirm --version 1.5.0
 
-## Go to main project root
-WORKDIR /basic
+## Set Julia environment variables
+ENV JULIA_DEPOT_PATH="/opt/julia"
+ENV JULIA_PROJECT="/project"
+
+## Set working directory
+WORKDIR /project
 
 ## Copy renv.lock file into the folder
 COPY renv.lock .
@@ -60,5 +67,16 @@ RUN R -e "renv::consent(provided = TRUE)"
 # Run renv restore to restore the environment
 RUN R -e "renv::restore(confirm = FALSE)"
 
-## Copy over the rest of the data and scripts
+# Install Python packages using Poetry
+COPY pyproject.toml poetry.lock .
+RUN poetry install --no-interaction --no-root
+
+# Install Julia packagets and management
+COPY Manifest.toml Project.toml .
+RUN julia -e 'using Pkg; Pkg.instantiate()'
+
+# Copy over the rest of the project files
 COPY . .
+
+# Default command
+CMD ["bash"] 
