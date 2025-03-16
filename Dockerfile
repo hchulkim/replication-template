@@ -5,43 +5,59 @@ LABEL maintainer="Hyoungchul Kim <hchul.kim96@gmail.com>"
 
 ## Update and install system dependencies
 RUN apt-get update && apt-get install -y \
-	libcurl4-openssl-dev \
-	libssl-dev \
-	libfontconfig1-dev \
-	libharfbuzz-dev \
-	libfribidi-dev \
-	libfreetype6-dev \
-	libpng-dev \
-	libtiff5-dev \
-	libjpeg-dev \
-	libglpk-dev \
-	libxml2-dev \
-	libcairo2-dev \
-	libgit2-dev \
-	libpq-dev \
-	libsasl2-dev \
-	libsqlite3-dev \
-	libssh2-1-dev \
-	libxt-dev \
-	libgdal-dev \
-	wget \
-	curl \
-	git	
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libfontconfig1-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
+    libglpk-dev \
+    libxml2-dev \
+    libcairo2-dev \
+    libgit2-dev \
+    libpq-dev \
+    libsasl2-dev \
+    libsqlite3-dev \
+    libssh2-1-dev \
+    libxt-dev \
+    libgdal-dev \
+    wget \
+    curl \
+    git	
 
 ## Install Pandoc (Required for RMarkdown, Quarto, etc.)
 RUN /rocker_scripts/install_pandoc.sh
 
 ## Install Python & Poetry
 RUN /rocker_scripts/install_python.sh && \
-	pip3 install --upgrade pip && \
-	pip3 install poetry
+    pip3 install --upgrade pip && \
+    pip3 install poetry
 
-## Install Julia. We'll use Abel Siqueira's handy JILL script to do this.
-RUN wget https://raw.githubusercontent.com/abelsiqueira/jill/master/jill.sh
-RUN bash jill.sh --no-confirm --version 1.5.0
+# Ensure Poetry installs dependencies in the system environment
+RUN poetry config virtualenvs.create false
+
+# Copy Poetry files and install dependencies
+COPY pyproject.toml poetry.lock .
+RUN poetry install --no-interaction --no-root
+
+# Verify installed packages
+RUN python3 -c "import sys; print(sys.path)"
+RUN python3 -c "import pandas; print('Poetry packages installed successfully!')"
+
+## Install Julia 1.11.3 (to match Manifest.toml)
+ENV JULIA_VERSION=1.11.3
+RUN wget -q https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%.*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz && \
+    tar -xzf julia-${JULIA_VERSION}-linux-x86_64.tar.gz -C /usr/local --strip-components=1 && \
+    rm julia-${JULIA_VERSION}-linux-x86_64.tar.gz
+
+## Verify Julia installation
+RUN julia --version
 
 ## Set Julia environment variables
-ENV JULIA_DEPOT_PATH="/opt/julia"
+ENV JULIA_DEPOT_PATH="/root/.julia"
 ENV JULIA_PROJECT="/project"
 
 ## Set working directory
@@ -59,7 +75,6 @@ ENV RENV_WATCHDOG_ENABLED FALSE
 RUN echo "options(renv.consent = TRUE)" >> .Rprofile
 RUN echo "options(RETICULATE_MINICONDA_ENABLED = FALSE)" >> .Rprofile
 
-
 # Install renv from CRAN (avoiding bootstrapping by specifying version)
 RUN R -e "install.packages('renv', repos = c(CRAN = 'https://cloud.r-project.org'))"
 RUN R -e "renv::consent(provided = TRUE)"
@@ -67,16 +82,13 @@ RUN R -e "renv::consent(provided = TRUE)"
 # Run renv restore to restore the environment
 RUN R -e "renv::restore(confirm = FALSE)"
 
-# Install Python packages using Poetry
-COPY pyproject.toml poetry.lock .
-RUN poetry install --no-interaction --no-root
-
-# Install Julia packagets and management
+# Install Julia packages and manage dependencies
 COPY Manifest.toml Project.toml .
-RUN julia -e 'using Pkg; Pkg.instantiate()'
+RUN julia -e "import Pkg; Pkg.update(); Pkg.resolve(); Pkg.instantiate(); Pkg.precompile()"
 
 # Copy over the rest of the project files
 COPY . .
 
 # Default command
-CMD ["bash"] 
+CMD ["bash"]
+
