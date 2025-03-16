@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y \
     libgdal-dev \
     wget \
     curl \
+    vim \
     git	
 
 ## Install Pandoc (Required for RMarkdown, Quarto, etc.)
@@ -67,11 +68,11 @@ WORKDIR /project
 COPY renv.lock .
 
 # Set environment variables for renv
-ENV RENV_VERSION 1.0.7
-ENV RENV_PATHS_CACHE /renv/cache
-ENV RENV_CONFIG_REPOS_OVERRIDE https://cloud.r-project.org
-ENV RENV_CONFIG_AUTOLOADER_ENABLED FALSE
-ENV RENV_WATCHDOG_ENABLED FALSE
+ENV RENV_VERSION=1.0.7
+ENV RENV_PATHS_CACHE=/renv/cache
+ENV RENV_CONFIG_REPOS_OVERRIDE=https://cloud.r-project.org
+ENV RENV_CONFIG_AUTOLOADER_ENABLED=FALSE
+ENV RENV_WATCHDOG_ENABLED=FALSE
 RUN echo "options(renv.consent = TRUE)" >> .Rprofile
 RUN echo "options(RETICULATE_MINICONDA_ENABLED = FALSE)" >> .Rprofile
 
