@@ -44,18 +44,11 @@ RUN poetry config virtualenvs.create false
 COPY pyproject.toml poetry.lock .
 RUN poetry install --no-interaction --no-root
 
-# Verify installed packages
-RUN python3 -c "import sys; print(sys.path)"
-RUN python3 -c "import pandas; print('Poetry packages installed successfully!')"
-
 ## Install Julia 1.11.3 (to match Manifest.toml)
 ENV JULIA_VERSION=1.11.3
 RUN wget -q https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%.*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz && \
     tar -xzf julia-${JULIA_VERSION}-linux-x86_64.tar.gz -C /usr/local --strip-components=1 && \
     rm julia-${JULIA_VERSION}-linux-x86_64.tar.gz
-
-## Verify Julia installation
-RUN julia --version
 
 ## Set Julia environment variables
 ENV JULIA_DEPOT_PATH="/root/.julia"
