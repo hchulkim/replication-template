@@ -9,6 +9,7 @@ format:
     keep-html: true
     code-overflow: wrap
   pdf:
+    pdf-engine: pdflatex
     keep-tex: true
     include-in-header: 
        text: |
@@ -69,4 +70,13 @@ modelsummary(
   tinytable::style_tt(i = 1:2, j = 2:3, background = "pink")
 ```
 
+```{python}
+# You need reticulate R-package for this
+print("hello, python world.")
+```
 
+```{julia}
+
+# You need JuliaCall R-package for this
+println("hello, julia world.")
+```
