@@ -29,8 +29,9 @@ RUN apt-get update && apt-get install -y \
     vim \
     git	
 
-## Install Pandoc (Required for RMarkdown, Quarto, etc.)
-RUN /rocker_scripts/install_pandoc.sh
+## Install Pandoc and Quarto (Required for RMarkdown, Quarto, etc.)
+# RUN /rocker_scripts/install_pandoc.sh
+# RUN /rocker_scripts/install_quarto.sh
 
 ## Install Python & Poetry
 RUN /rocker_scripts/install_python.sh && \
@@ -46,13 +47,7 @@ RUN poetry install --no-interaction --no-root
 
 ## Install Julia 1.11.3 (to match Manifest.toml)
 ENV JULIA_VERSION=1.11.3
-RUN wget -q https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%.*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz && \
-    tar -xzf julia-${JULIA_VERSION}-linux-x86_64.tar.gz -C /usr/local --strip-components=1 && \
-    rm julia-${JULIA_VERSION}-linux-x86_64.tar.gz
-
-## Set Julia environment variables
-ENV JULIA_DEPOT_PATH="/root/.julia"
-ENV JULIA_PROJECT="/project"
+RUN /rocker_scripts/install_julia.sh
 
 ## Set working directory
 WORKDIR /project
@@ -78,7 +73,8 @@ RUN R -e "renv::restore(confirm = FALSE)"
 
 # Install Julia packages and manage dependencies
 COPY Manifest.toml Project.toml .
-RUN julia -e "import Pkg; Pkg.update(); Pkg.resolve(); Pkg.instantiate(); Pkg.precompile()"
+ENV JULIA_PROJECT=/project
+RUN julia -e "import Pkg; Pkg.activate(\".\"); Pkg.instantiate()"
 
 # Copy over the rest of the project files
 COPY . .
