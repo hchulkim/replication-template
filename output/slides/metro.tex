@@ -1,0 +1,104 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usetheme{metropolis} % Use metropolis theme 
+
+\usepackage{appendixnumberbeamer}
+\usepackage{booktabs}
+
+\usefonttheme[onlymath]{serif} 
+\usepackage{mathpazo}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\title{Slide template (Metropolis)}
+\subtitle{A modern beamer theme}
+\date{\today}
+\author{Hyoungchul Kim (Wharton, UPenn)}
+
+\begin{document}
+
+\maketitle
+
+\section[template]{template}
+
+\begin{frame}{bullets}
+	\begin{itemize}
+		\item bullet points!
+		\item more!
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{numbers}
+	\begin{enumerate}
+		\item numbers!
+		\item more!
+	\end{enumerate}	
+\end{frame}
+
+\begin{frame}{blocks}
+  Three different block environments are pre-defined and may be styled with an
+  optional background color.
+
+  \begin{columns}[T,onlytextwidth]
+    \column{0.5\textwidth}
+      \begin{block}{Default}
+        Block content.
+      \end{block}
+
+      \begin{alertblock}{Alert}
+        Block content.
+      \end{alertblock}
+
+      \begin{exampleblock}{Example}
+        Block content.
+      \end{exampleblock}
+
+    \column{0.5\textwidth}
+
+      \metroset{block=fill}
+
+      \begin{block}{Default}
+        Block content.
+      \end{block}
+
+      \begin{alertblock}{Alert}
+        Block content.
+      \end{alertblock}
+
+      \begin{exampleblock}{Example}
+        Block content.
+      \end{exampleblock}
+
+  \end{columns}
+\end{frame}
+
+\begin{frame}{math}
+ Hello, world! Here some random math:
+ \begin{align*}
+ s_{t}=\begin{cases}
+ \bar{s}, & t\in \left\lbrace 0,\dots, T-1\right\rbrace  \\
+ \tilde{s}, & t\geq T
+ \end{cases}
+ \end{align*} 
+\end{frame}
+
+{\setbeamercolor{palette primary}{fg=black, bg=yellow}
+\begin{frame}[standout]
+  Questions?
+\end{frame}
+}
+
+\appendix
+
+\begin{frame}[fragile]{Backup slides}
+  Sometimes, it is useful to add slides at the end of your presentation to
+  refer to during audience questions.
+
+  The best way to do this is to include the \verb|appendixnumberbeamer|
+  package in your preamble and call \verb|\appendix| before your backup slides.
+
+  \themename will automatically turn off slide numbering and progress bars for
+  slides in the appendix.
+\end{frame}
+
+\end{document}`
