@@ -1,20 +1,139 @@
 # Replication template
 
-This is a replication template (or empirical analysis templatee) for me.
+This is a replication template (or empirical analysis template) for me.
 
-## Folder structure information
+## Summary
 
-1. `code`: This is a folder where I put my codes.
-2. `doc': This is a folder where I put my documents. This is usually for short reports. FYI, it uses `Quarto` to render html and pdf files.
-3. `input`: This is a folder where I put my data. Inside, there are few subfolders. `raw` folder is where I put my raw data. `temp` folder is where I put my intermediate data which has been pre-processed from `raw`. `proc` folder is where I put my final data ready to be used in analysis.
-4. `lit`: This is a folder where I put my literature.
-5. `output`: This is a folder where I put my outputs. Inside, there are few subfolders.`figures` and `tables` folders have figures and tables results I use for my paper. `paper` folder has my working paper document. `slides` folder has my presentation slides.
-6. `ref`: This is a folder where I put some miscellaneous stuffs for reference.
+1. Requirements
+2. Setup
+3. Folders
+4. Files
+5. Leveraging on Github Capabilities
+6. Writing
+7. Journal Submissions
+8. Principles
 
-You can ignore other folders. But don't erase them. They are important but they do not serve any specific purpose.
+## 1. Requirements
 
-## Dependencies management
+This workflow requires:
+- [Bash](https://www.gnu.org/software/bash/) [Free]
+- [R](https://www.r-project.org/) [Free]
+- [Julia](https://julialang.org/) [Free]
+- [Python](https://www.python.org) [Free] 
+- [LaTeX](https://www.latex-project.org) [Free]
+
+Other great languages and softwares may also be used.
+- [Stata](https://www.stata.com) [Licensed]
+- [Matlab](https://www.mathworks.com/products/matlab) [Licensed]
+
+For now, it is only adapted for Linux or OSX (Apple) environments. But feel free to adapt it to Windows.
+
+#### Dependency management
+
+It is important to set up dependency management for the programming languages we use for replication and reproducibility. Here are lists of management program that I use:
 
 - `R`: I use `renv` package.
 - `Python`: I use `poetry` package.
 - `Julia`: I just use `Pkg`.
+
+## 2. Setup
+
+1. Create or join a cloud folder (e.g. on Dropbox or Drive) where large non-versioned files will reside.
+2. Clone this repository to a local folder *outside* the cloud folder.
+
+You're good to go. This repository is now ready for the standard workflow described below.
+
+## 3. Folders
+
+##### `code`
+
+- This folder contains all the code that builds data and performs analyses.
+- All intermediary data results should be redirected into `input/temp`.
+- All final data results should be redirected into `input/proc`.
+- All output tables and figures should be redirected into `output/tables` and `output/figures` respectively.
+- Keep the names of the code files clear and easy to understand. Try to number them as well.
+  
+##### `input`
+
+- A folder that contains all the input data.
+- Has subfolders `raw`, `temp`, `proc`, which contain raw data, intermediary data, and processed data (ready for analysis).
+  
+##### `output`
+
+- A folder that contains all the outputs.
+- Has subfolders that contain figures and tables.
+- `slides` subfolder contains slides for presentation.
+- `paper` subfolder contains working paper.
+
+#### `lit`
+
+- A folder that contains literature.
+
+##### `ref`
+
+- A folder that contains reference materials.
+
+## 4. Files
+
+##### `Dockerfile`
+
+- Builds the necessary environment to run the analysis on any computer.
+- In essence, it **ships my computer environment setup to your computer.**
+
+##### `Makefile`
+
+- Automates the whole paper construction.
+- Runs everything in a pre-specified order, from beginning (building data sets) to end (compiling `.tex` files).
+- Keeps clear what should be run when.
+
+##### `renv.lock`, `pyproject.toml`, `poetry.lock`, `Project.toml`, `Manifest.toml`
+
+- Files related to dependency management.
+
+## 5. Leveraging on Github capabilities
+
+- Use issues as tasks. Track it all on a project board named "Tasks".
+	- Add tags to tasks to track progress by area. Some template tags included: `build`, `analysis`, `writing`, `review`, `enhancement`, `bug`.
+- Name commits following [conventional notation](https://www.conventionalcommits.org).
+- Add forward-looking tags and milestones to plan and version work.
+	- These help marking relevant releases, such as a minimum viable product (MVP), a paper submission, or a talk.
+	- Use [semantic versioning](https://semver.org/) for naming, e.g. `v0.1`, `v1.0.2`.
+- Only modify files via pull requests. Use closing keywords to close issues.
+
+## 6. Writing
+
+All writing should be done within the repository to preserve versioning and consistency.
+
+## 7. Journal Submissions
+
+Use this folder and Github for working on reviewing drafts (e.g. after a Revise and Resubmit request).
+
+Flow:
+1. Centralize all numbered comments in one document uploaded to `output/paper/comments.txt`.
+2. Assign comments to issues with clear tasks described in text. Assign issues to people, add tags, add milestone for "journal resubmission", etc. Add issue numbers below each review comment so that it can be tracked 1:1.
+3. Work on issues, add sentences/paragraphs together with commit messages describing changes made to code and writing.
+4. When all is done, set a tag for the release and send it off for the journal.
+
+Use tags: `review`, `build`, `analysis`, `writing`, `negative replies`.
+
+## 8. Principles
+
+- For each new project, start (i) a structured versioned folder, (ii) a task manager project, and (iii) a set of slides.
+	1. Copy this folder and use a version control system (e.g. [Git](https://git-scm.com/)).
+		* Keep track of multiple authors' edits.
+		* No more `report_final_v3.2b_ST_toDelete.tex`.
+		* Use branching to work simultaneously on code.
+	2. Use Github's issues and projects as a task management system. (For other tools, see [ClickUp](https://clickup.com/), [2Do](https://www.2doapp.com/), [Asana](https://asana.com), [Trello](https://trello.com/), and [JIRA](https://www.atlassian.com/software/jira)).
+		* Your email inbox is not a task manager.
+		* Tasks should be actionable atoms.
+		* Set priorities, assignments, due dates, etc.
+		* Only one person should be ultimately responsible for each task.
+		* Do regular reviews and cleaning.
+	3. Slides
+		* Containing the current (summarized) version of the paper.
+		* Update it continuously. It will discipline your work.
+- Use a good text editor (I recommend [Visual Studio Code](https://code.visualstudio.com/) or [vim](http://www.vim.org/)).
+- Use a modern and flexible communication tool (see [Discord](https://discord.com/) or [Slack](https://slack.com)).
+- Use a good reference/citation manager.
+- Keep documentation lean and clean.
+- Keep this folder organized. Your future self thanks your present effort.
