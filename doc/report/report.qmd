@@ -70,7 +70,7 @@ modelsummary(
   tinytable::style_tt(i = 1:2, j = 2:3, background = "pink")
 ```
 
-```{python}
+<!-- ```{python}
 # You need reticulate R-package for this
 print("hello, python world.")
 ```
@@ -79,4 +79,4 @@ print("hello, python world.")
 
 # You need JuliaCall R-package for this
 println("hello, julia world.")
-```
+``` -->
