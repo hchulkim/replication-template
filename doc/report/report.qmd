@@ -2,6 +2,8 @@
 title: "report"
 author: "Hyoungchul Kim"
 date: today
+execute:
+  echo: false
 format: 
   html:
     toc: true
@@ -11,11 +13,27 @@ format:
   pdf:
     pdf-engine: pdflatex
     keep-tex: true
+    fig-pos: H
     include-in-header: 
        text: |
          \usepackage{fvextra}
          \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
          \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+         \usepackage{booktabs}
+         \usepackage{longtable}
+         \usepackage{array}
+         \usepackage{multirow}
+         \usepackage{wrapfig}
+         \usepackage{float}
+         \usepackage{colortbl}
+         \usepackage{pdflscape}
+         \usepackage{tabu}
+         \usepackage{threeparttable}
+         \usepackage{threeparttablex}
+         \usepackage[normalem]{ulem}
+         \usepackage{makecell}
+         \usepackage{xcolor}
+         
 ---
 
 # Lorem ipsum
@@ -38,9 +56,7 @@ This is a latex math-equation using *align*.
 
 --
 
-## Code block
-
-This is a code block.
+## Tables
 
 ```{r}
 #| warning: false
@@ -70,13 +86,14 @@ modelsummary(
   tinytable::style_tt(i = 1:2, j = 2:3, background = "pink")
 ```
 
-<!-- ```{python}
-# You need reticulate R-package for this
-print("hello, python world.")
+## kableExtra tables
+
+```{r}
+
+library(kableExtra)
+
+mtcars |> 
+  kbl(format = "html")
+
 ```
 
-```{julia}
-
-# You need JuliaCall R-package for this
-println("hello, julia world.")
-``` -->
