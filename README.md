@@ -4,6 +4,7 @@ This is a replication template (or empirical analysis template) for me.
 
 ## Summary
 
+0. Workflow
 1. Requirements
 2. Setup
 3. Folders
@@ -12,6 +13,36 @@ This is a replication template (or empirical analysis template) for me.
 6. Writing
 7. Journal Submissions
 8. Principles
+
+## 0. Workflow
+
+When starting research, you should consider logistics between 2 or 3 components:
+
+- Dropbox folder
+- local folder
+- (optional) Overleaf
+
+### Dropbox folder (main machine)
+
+This is your main folder for research. You should have everything related to research including code scripts, data, outputs, paper, slides, etc. It is nice to have Dropbox as the main folder for your research because data becomes too large to just host it on your local folder.
+
+### local folder (sub machine)
+
+This is your folder for sub machine. When you are traveling or in some other places, it is hard to use the main machine. Thus, you should put the code and data in the local folder.
+
+### (optional) Overleaf
+
+Sometimes this is useful for collaborating and writing papers.
+
+### coding workflow
+
+0. Set git in Dropbox folder.
+1. Use the git to clone it into local folder.
+2. Manually copy data from Dropbox to local folder.
+3. **ONLY** modify Dropbox folder from your main machine! In local folder, you should only copy data from Dropbox folder.
+4. Use git to share analysis from local folder to Dropbox.
+5. **WHEN STARTING**: (1) git pull; (2) git commit; (3) git push; (4) `make copy_paste` for overleaf.
+7. **After modifying from Overleaf (After you are all done with coding in Dropbox)**: copy `output` folder to Dropbox folder. 
 
 ## 1. Requirements
 
