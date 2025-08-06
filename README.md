@@ -39,10 +39,10 @@ Sometimes this is useful for collaborating and writing papers.
 0. Set git in Dropbox folder.
 1. Use the git to clone it into local folder.
 2. Manually copy data from Dropbox to local folder.
-3. **ONLY** modify Dropbox folder from your main machine! In local folder, you should only copy data from Dropbox folder.
+3. **ONLY** modify Dropbox folder from your main machine! In local folder, you should only copy data from Dropbox folder or copy `data/temp` results to Dropbox.
 4. Use git to share analysis from local folder to Dropbox.
-5. **WHEN STARTING**: (1) git pull; (2) git commit; (3) git push; (4) `make copy_paste` for overleaf.
-7. **After modifying from Overleaf (After you are all done with coding in Dropbox)**: copy `output` folder to Dropbox folder. 
+5. **CODING flow**: (0) Copy raw data from Dropbox to local if there is an update; (1) git pull; (2) git commit; (3) git push; (4) copy `data/temp` results to Dropbox (if in local folder); (5) do git pull, commit, and push for Dropbox; (6) `make copy_paste` for overleaf (in Dropbox).
+6. **After modifying from Overleaf (After you are all done with coding in Dropbox)**: (1) copy `output` folder to Dropbox folder; (2) git pull, commit, and push.
 
 ## 1. Requirements
 
