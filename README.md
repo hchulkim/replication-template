@@ -76,7 +76,7 @@ You're good to go. This repository is now ready for the standard workflow descri
 
 ## 3. Folders
 
-##### `code`
+##### `src`
 
 - This folder contains all the code that builds data and performs analyses.
 - All intermediary data results should be redirected into `input/temp`.
@@ -95,31 +95,6 @@ You're good to go. This repository is now ready for the standard workflow descri
 - Has subfolders that contain figures and tables.
 - `slides` subfolder contains slides for presentation.
 - `paper` subfolder contains working paper.
-
-#### `lit`
-
-- A folder that contains literature.
-
-##### `ref`
-
-- A folder that contains reference materials.
-
-## 4. Files
-
-##### `Dockerfile`
-
-- Builds the necessary environment to run the analysis on any computer.
-- In essence, it **ships my computer environment setup to your computer.**
-
-##### `Makefile`
-
-- Automates the whole paper construction.
-- Runs everything in a pre-specified order, from beginning (building data sets) to end (compiling `.tex` files).
-- Keeps clear what should be run when.
-
-##### `renv.lock`, `pyproject.toml`, `poetry.lock`, `Project.toml`, `Manifest.toml`
-
-- Files related to dependency management.
 
 ## 5. Leveraging on Github capabilities
 
