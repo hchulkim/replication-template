@@ -35,7 +35,7 @@ RUN R -e "setwd('/home/project');renv::init();renv::restore()"
 
 RUN mkdir /home/project/output
 
-RUN mkdir /home/project/shared_folder
+RUN mkdir /home/project/shared_folder/
 
 RUN cd /home/project/output && touch test.txt
 
