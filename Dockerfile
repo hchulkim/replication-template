@@ -33,6 +33,12 @@ COPY renv.lock /home/project/renv.lock
 
 RUN R -e "setwd('/home/project');renv::init();renv::restore()"
 
-RUN cd /home/project && make
+RUN mkdir /home/project/output
 
-CMD echo done!
+RUN mkdir /home/project/shared_folder
+
+RUN cd /home/project/output && touch test.txt
+
+RUN echo "testing!" >> test.txt
+
+CMD mv /home/project/output/* /home/project/shared_folder
