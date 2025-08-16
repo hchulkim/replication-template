@@ -1,0 +1,30 @@
+name: Reproducible pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Build the Docker image
+      run: docker build -t replication_image .
+
+    - name: Docker Run Action
+      run: > 
+        docker run --rm --name replication_container -v
+        /github/workspace/shared_folder:/home/project/shared_folder:rw 
+        replication_image
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: replication_output_${{ github.sha }}
+        path: /github/workspace/shared_folder/
