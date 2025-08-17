@@ -21,7 +21,10 @@ RUN apt-get update && apt-get install -y \
     libxt-dev \
     unixodbc-dev \
     wget \
-    pandoc
+    pandoc \
+    make \
+    graphviz \
+    makefile2graph
 
 RUN R -e "install.packages('remotes')"
 
