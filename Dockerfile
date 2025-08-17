@@ -1,6 +1,11 @@
 FROM rocker/r-ver:4.5.1
 
-RUN apt-get update && apt-get install -y \
+# System deps
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    gfortran \
+    pkg-config \
+    libssl-dev \
     libglpk-dev \
     libxml2-dev \
     libcairo2-dev \
@@ -20,28 +25,37 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     libxt-dev \
     unixodbc-dev \
+    gdal-bin \
+    libgdal-dev \
+    libgeos-dev \
+    libproj-dev \
+    libudunits2-dev \
+    cmake \
+    git \
     wget \
     pandoc \
-    make \
     graphviz \
-    makefile2graph
+    make \
+    makefile2graph && \
+    rm -rf /var/lib/apt/lists/*
 
+# R tooling
 RUN R -e "install.packages('remotes')"
-
 RUN R -e "remotes::install_github('rstudio/renv@v1.1.5')"
 
-RUN mkdir /home/project
+# Project
+WORKDIR /home/project
+RUN mkdir -p output shared_folder
 
-COPY renv.lock /home/project/renv.lock
+# Restore via lockfile first for better caching
+COPY renv.lock renv.lock
+RUN R -e "renv::consent(provided=TRUE); renv::restore(prompt=FALSE)"
 
-RUN R -e "setwd('/home/project');renv::restore()"
+# Then copy the rest
+COPY . .
 
-RUN mkdir /home/project/output
+RUN cd /home/project/output && touch version.txt
 
-RUN mkdir /home/project/shared_folder
-
-RUN cd /home/project/output && touch test.txt
-
-RUN echo "testing!" >> /home/project/output/test.txt
+RUN echo "version: hchulkim/r_4.5.1" >> /home/project/output/version.txt
 
 CMD mv /home/project/output/* /home/project/shared_folder/
