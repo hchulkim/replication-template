@@ -39,23 +39,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     makefile2graph && \
     rm -rf /var/lib/apt/lists/*
 
-# R tooling
+# Install renv R package
 RUN R -e "install.packages('remotes')"
 RUN R -e "remotes::install_github('rstudio/renv@v1.1.5')"
 
-# Project
+# Set working directory for the project
 WORKDIR /home/project
-RUN mkdir -p output shared_folder
-
-# Restore via lockfile first for better caching
-COPY renv.lock renv.lock
-RUN R -e "renv::consent(provided=TRUE); renv::restore(prompt=FALSE)"
-
-# Then copy the rest
-COPY . .
-
-RUN cd /home/project/output && touch version.txt
-
-RUN echo "version: hchulkim/r_4.5.1" >> /home/project/output/version.txt
-
-CMD mv /home/project/output/* /home/project/shared_folder/
