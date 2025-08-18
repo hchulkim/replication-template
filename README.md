@@ -9,6 +9,24 @@ This part should contain following information:
 5. License: A license specifies the terms of use of code and data in the replication package. The license allows for replication by researchers unconnected to the original parties.
 6. Omissions: The README clearly indicates any omission of the required parts of the package due to legal requirements or limitations or other approved agreements.
 
+## README Checklist
+
+- [ ] Data Availability and Provenance Statements
+  - [ ] Statement about Rights
+  - [ ] License for Data (optional, but recommended)
+  - [ ] Details on each Data Source
+- [ ] Dataset list
+- [ ] Computational requirements
+  - [ ] Software Requirements
+  - [ ] Controlled Randomness (as necessary)
+  - [ ] Memory, Runtime, and Storage Requirements
+- [ ] Description of programs/code
+  - [ ] License for Code (Optional, but recommended)
+- [ ] Instructions to Replicators
+  - [ ] Details (as necessary)
+- [ ] List of tables and programs
+- [ ] References (Optional, but recommended)
+
 # Information on overall replication workflow
 
 This is a replication template (or empirical analysis template) for me.
