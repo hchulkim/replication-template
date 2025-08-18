@@ -157,6 +157,10 @@ The code was last run on a **Intel-based laptop with Linux Ubuntu 22.04.5 LTS (J
 
 The project takes up around 000GB of storage.
 
+## Replication package expected run-time
+
+This replication package's expected run-time is 000.
+
 ### OS-Specific Considerations
 
 - Linux (Ubuntu, Fedora (asahi linux), etc) is highly recommended; MacOS is supported.
