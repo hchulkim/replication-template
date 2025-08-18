@@ -1,5 +1,16 @@
 # Replication template
 
+This part should contain following information:
+
+1. Documentation: A README document is included, containing a Data Availability Statement, listing all software and hardware dependencies and requirements (including the expected run time), and explaining how to reproduce the research results. The README follows the schema provided by the Social Science Data Editors’ template README
+2. Data availability statement: A Data Availability Statement is provided with detailed enough information such that an independent researcher can replicate the steps needed to access the original data, including any limitations and the expected monetary and time cost of data access.
+3. Location: Data and programs are archived by the authors in the repositories deemed acceptable by the journal.
+4. Citation: All data used in the paper are cited.
+5. License: A license specifies the terms of use of code and data in the replication package. The license allows for replication by researchers unconnected to the original parties.
+6. Omissions: The README clearly indicates any omission of the required parts of the package due to legal requirements or limitations or other approved agreements.
+
+# Information on overall replication workflow
+
 This is a replication template (or empirical analysis template) for me.
 
 ## Summary
