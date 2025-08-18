@@ -33,18 +33,6 @@ For a more detailed instructions, click this [link](https://aeadataeditor.github
 
 This is a replication template (or empirical analysis template) for me.
 
-## Summary
-
-0. Workflow
-1. Requirements
-2. Setup
-3. Folders
-4. Files
-5. Leveraging on Github Capabilities
-6. Writing
-7. Journal Submissions
-8. Principles
-
 ## 0. Workflow
 
 When starting research, you should consider logistics between 2 or 3 components:
