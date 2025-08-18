@@ -53,7 +53,7 @@ This is your main folder for analysis. You should put everything other than data
 
 Sometimes this is useful for collaborating and writing papers. But you should do this only if you have premium subscription so you can use the Dropbox syncing feature.
 
-### coding workflow
+### Coding workflow
 
 0. Set git in local folder.
 1. Use symlink to link Dropbox data folder to `input` file in the local folder. This allows you to use data as if you have them in your local folder.
