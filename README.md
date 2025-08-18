@@ -144,6 +144,8 @@ Hyoungchul Kim (2025). "Data for 000" https://github.com/hchulkim/replication-te
 
 ## Computational requirements
 
+We strongly suggest following the requirements to install and set up the environment to run the analysis.
+
 ### Memory, storage and hardware Requirements
 
 The code was last run on a **Intel-based laptop with Linux Ubuntu 22.04.5 LTS (Jammy Jellyfish) with 1TB of total storage and 64GB of RAM**. Information on number of CPUs and cores is posted below: 
@@ -159,8 +161,6 @@ The project takes up around 000GB of storage.
 
 - Linux (Ubuntu, Fedora (asahi linux), etc) is highly recommended; MacOS is supported.
 - Windows is not officially supported. Users may encounter issues with file path formats and parallel processing.
-
-We strongly suggest following the requirements to install and set up the environment to run the analysis.
 
 ### Bash (terminal)
 
