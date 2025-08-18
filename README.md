@@ -11,6 +11,8 @@ This part should contain following information:
 
 ## README Checklist
 
+For a more detailed instructions, click this [link](https://aeadataeditor.github.io/aea-de-guidance/preparing-for-data-deposit.html).
+
 - [ ] Data Availability and Provenance Statements
   - [ ] Statement about Rights
   - [ ] License for Data (optional, but recommended)
