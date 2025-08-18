@@ -43,13 +43,13 @@ This is your main folder for analysis. You should put everything other than data
 
 ### (optional) Overleaf
 
-Sometimes this is useful for collaborating and writing papers.
+Sometimes this is useful for collaborating and writing papers. But you should do this only if you have premium subscription so you can use the Dropbox syncing feature.
 
 ### coding workflow
 
 0. Set git in local folder.
 1. Use symlink to link Dropbox data folder to `input` file in the local folder. This allows you to use data as if you have them in your local folder.
-2. Use symlink to link Overleaf `output` folder to `output` file in the local folder. This allows you to access output results in the overleaf.
+2. Use symlink to link Overleaf `output` folder to `output` file in the local folder. This allows you to access output results in the overleaf (Only if you have premium subscription).
 3. Overall flow: Do all the analysis in the local folder and use git to record them. Write reports/papers in the overleaf.
 
 ## 1. Requirements
@@ -72,7 +72,6 @@ For now, it is only adapted for Linux or OSX (Apple) environments. But feel free
 It is important to set up dependency management for the programming languages we use for replication and reproducibility. Here are lists of management program that I use:
 
 - `R`: I use `renv` package.
-- `Python`: I use `uv` package.
 - `Julia`: I just use `Pkg`.
 
 ## 2. Folders
