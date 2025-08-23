@@ -22,7 +22,7 @@ makefile-dag.png: Makefile
 	make -Bnd all | make2graph | dot -Tpng -Gdpi=300 -o makefile-dag.png
 
 clean:
-	rm -f $(inputdir)* $(figsdir)* $(papdir)* $(slidsdir)* $(papdir)*
+	rm -f $(inputdir)* $(figsdir)* $(tabsdir)* $(slidsdir)* $(papdir)*
 	
 ## Helpers
 .PHONY: all clean

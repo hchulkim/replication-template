@@ -33,6 +33,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     cmake \
     git \
     wget \
+    texlive-full \
     pandoc \
     graphviz \
     make \
