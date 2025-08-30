@@ -1,10 +1,10 @@
 # Replication template
 
-## Overall summary and high-level instructions
+# Overall summary and high-level instructions
 
 This is a README for the replication template made by [Hyoungchul Kim](hchulkim.github.io). This README summarizes and describes how to use this template for reproducible research workflow. For a more detailed instructions on how to use this template (and benefits of using it), consult to my [blog post](https://hchulkim.github.io/posts/reproducible-template/).
 
-If you intend to use my template, make sure you erase all the contents in the README and replace it with your own README. This README is just recommendations for certain research workflow you could follow. Normally, you would write something like [social science replication README template](https://social-science-data-editors.github.io/template_README/). For convenience, I also put my example README template in [Example template](#example). They are based on [DCAS](https://datacodestandard.org/) and [AEA DCAS](https://www.aeaweb.org/journals/data/data-code-policy).
+If you intend to use my template, make sure you erase all the contents in the README and replace it with your own README. This README is just recommendations for certain research workflow you could follow. Normally, you would write something like [social science replication README template](https://social-science-data-editors.github.io/template_README/). For convenience, I also put my example README template in [Example template](https://github.com/hchulkim/replication-template/tree/master?tab=readme-ov-file#example-readme-template-example). They are based on [DCAS](https://datacodestandard.org/) and [AEA DCAS](https://www.aeaweb.org/journals/data/data-code-policy).
 
 # Information on overall replication workflow
 
@@ -85,11 +85,11 @@ It is important to set up dependency management for the programming languages we
 	- Add tags to tasks to track progress by area. Some template tags included: `build`, `analysis`, `writing`, `review`, `enhancement`, `bug`.
 - Use branches to ensure your main research workflow is not corrupted. Also modify files via pull requests. Use closing keywords to close issues.
 
-# Example README template {#example}
+# Example README template
 
-When you are creating your own research project based on this GitHub template, only keep the format below and erase all the contents above. Also erase the [README documentation and checklist section](#checklist) below.
+When you are creating your own research project based on this GitHub template, only keep the format below and erase all the contents above. Also erase the [README documentation and checklist section](#readme-documentation-and-checklist) below.
 
-##README documentation and checklist {#checklist}
+## README documentation and checklist
 
 This part should contain following information:
 
