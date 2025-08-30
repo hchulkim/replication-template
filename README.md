@@ -4,7 +4,7 @@
 
 This is a README for the replication template made by [Hyoungchul Kim](hchulkim.github.io). This README summarizes and describes how to use this template for reproducible research workflow. For a more detailed instructions on how to use this template (and benefits of using it), consult to my [blog post](https://hchulkim.github.io/posts/reproducible-template/).
 
-If you intend to use my template, make sure you erase all the contents in the README and replace it with your own README. This README is just recommendations for certain research workflow you could follow. Normally, you would write something like [social science replication README template](https://social-science-data-editors.github.io/template_README/). For convenience, I also put my example README template in [Example template](https://github.com/hchulkim/replication-template/tree/master?tab=readme-ov-file#example-readme-template-example). They are based on [DCAS](https://datacodestandard.org/) and [AEA DCAS](https://www.aeaweb.org/journals/data/data-code-policy).
+If you intend to use my template, make sure you erase all the contents in the README and replace it with your own README. This README is just recommendations for certain research workflow you could follow. Normally, you would write something like [social science replication README template](https://social-science-data-editors.github.io/template_README/). For convenience, I also put my example README template in [Example template](#example-readme-template-example). They are based on [DCAS](https://datacodestandard.org/) and [AEA DCAS](https://www.aeaweb.org/journals/data/data-code-policy).
 
 # Information on overall replication workflow
 
