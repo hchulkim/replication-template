@@ -1,37 +1,12 @@
 # Replication template
 
-This part should contain following information:
+## Overall summary and high-level instructions
 
-1. Documentation: A README document is included, containing a Data Availability Statement, listing all software and hardware dependencies and requirements (including the expected run time), and explaining how to reproduce the research results. The README follows the schema provided by the Social Science Data Editors’ template README
-2. Data availability statement: A Data Availability Statement is provided with detailed enough information such that an independent researcher can replicate the steps needed to access the original data, including any limitations and the expected monetary and time cost of data access.
-3. Location: Data and programs are archived by the authors in the repositories deemed acceptable by the journal.
-4. Citation: All data used in the paper are cited.
-5. License: A license specifies the terms of use of code and data in the replication package. The license allows for replication by researchers unconnected to the original parties.
-6. Omissions: The README clearly indicates any omission of the required parts of the package due to legal requirements or limitations or other approved agreements.
+This is a README for the replication template made by [Hyoungchul Kim](hchulkim.github.io). This README summarizes and describes how to use this template for reproducible research workflow. For a more detailed instructions on how to use this template (and benefits of using it), consult to my [blog post](https://hchulkim.github.io/posts/reproducible-template/).
 
-## README Checklist
-
-For a more detailed instructions, click this [link](https://aeadataeditor.github.io/aea-de-guidance/preparing-for-data-deposit.html).
-
-- [ ] Data Availability and Provenance Statements
-  - [ ] Statement about Rights
-  - [ ] License for Data (optional, but recommended)
-  - [ ] Details on each Data Source
-- [ ] Dataset list
-- [ ] Computational requirements
-  - [ ] Software Requirements
-  - [ ] Controlled Randomness (as necessary)
-  - [ ] Memory, Runtime, and Storage Requirements
-- [ ] Description of programs/code
-  - [ ] License for Code (Optional, but recommended)
-- [ ] Instructions to Replicators
-  - [ ] Details (as necessary)
-- [ ] List of tables and programs
-- [ ] References (Optional, but recommended)
+If you intend to use my template, make sure you erase all the contents in the README and replace it with your own README. This README is just recommendations for certain research workflow you could follow. Normally, you would write something like [social science replication README template](https://social-science-data-editors.github.io/template_README/). For convenience, I also put my example README template in [Example template](#example). They are based on [DCAS](https://datacodestandard.org/) and [AEA DCAS](https://www.aeaweb.org/journals/data/data-code-policy).
 
 # Information on overall replication workflow
-
-This is a replication template (or empirical analysis template) for me.
 
 ## 0. Workflow
 
@@ -65,11 +40,11 @@ Sometimes this is useful for collaborating and writing papers. But you should do
 This workflow requires:
 - [Bash](https://www.gnu.org/software/bash/) [Free]
 - [R](https://www.r-project.org/) [Free]
+
+Other great languages and softwares may also be used.
 - [Julia](https://julialang.org/) [Free]
 - [Python](https://www.python.org) [Free] 
 - [LaTeX](https://www.latex-project.org) [Free]
-
-Other great languages and softwares may also be used.
 - [Stata](https://www.stata.com) [Licensed]
 - [Matlab](https://www.mathworks.com/products/matlab) [Licensed]
 
@@ -108,13 +83,40 @@ It is important to set up dependency management for the programming languages we
 
 - Use issues as tasks. Track it all on a project board named "Tasks".
 	- Add tags to tasks to track progress by area. Some template tags included: `build`, `analysis`, `writing`, `review`, `enhancement`, `bug`.
-- Name commits following [conventional notation](https://www.conventionalcommits.org).
-- Add forward-looking tags and milestones to plan and version work.
-	- These help marking relevant releases, such as a minimum viable product (MVP), a paper submission, or a talk.
-	- Use [semantic versioning](https://semver.org/) for naming, e.g. `v0.1`, `v1.0.2`.
-- Only modify files via pull requests. Use closing keywords to close issues.
+- Use branches to ensure your main research workflow is not corrupted. Also modify files via pull requests. Use closing keywords to close issues.
 
-# Example README template
+# Example README template {#example}
+
+When you are creating your own research project based on this GitHub template, only keep the format below and erase all the contents above. Also erase the [README documentation and checklist section](#checklist) below.
+
+##README documentation and checklist {#checklist}
+
+This part should contain following information:
+
+1. Documentation: A README document is included, containing a Data Availability Statement, listing all software and hardware dependencies and requirements (including the expected run time), and explaining how to reproduce the research results. The README follows the schema provided by the Social Science Data Editors’ template README
+2. Data availability statement: A Data Availability Statement is provided with detailed enough information such that an independent researcher can replicate the steps needed to access the original data, including any limitations and the expected monetary and time cost of data access.
+3. Location: Data and programs are archived by the authors in the repositories deemed acceptable by the journal.
+4. Citation: All data used in the paper are cited.
+5. License: A license specifies the terms of use of code and data in the replication package. The license allows for replication by researchers unconnected to the original parties.
+6. Omissions: The README clearly indicates any omission of the required parts of the package due to legal requirements or limitations or other approved agreements.
+
+For a more detailed instructions, click this [link](https://aeadataeditor.github.io/aea-de-guidance/preparing-for-data-deposit.html).
+
+- [ ] Data Availability and Provenance Statements
+  - [ ] Statement about Rights
+  - [ ] License for Data (optional, but recommended)
+  - [ ] Details on each Data Source
+- [ ] Dataset list
+- [ ] Computational requirements
+  - [ ] Software Requirements
+  - [ ] Controlled Randomness (as necessary)
+  - [ ] Memory, Runtime, and Storage Requirements
+- [ ] Description of programs/code
+  - [ ] License for Code (Optional, but recommended)
+- [ ] Instructions to Replicators
+  - [ ] Details (as necessary)
+- [ ] List of tables and programs
+- [ ] References (Optional, but recommended)
 
 ## Citation
 
