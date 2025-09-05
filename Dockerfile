@@ -30,7 +30,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgeos-dev \
     libproj-dev \
     libudunits2-dev \
-    libicu-dev \
     cmake \
     git \
     wget \
