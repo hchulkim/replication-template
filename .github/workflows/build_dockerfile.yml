@@ -8,7 +8,7 @@ on:
 
 jobs:
   docker:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     env:
       IMAGE_NAME: r_4.5.1
     steps:
