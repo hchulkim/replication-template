@@ -5,19 +5,19 @@ source("renv/activate.R")
 
 ## For Linux and Windows users, we'll use RStudio Package Manager (RSPM).
 if (Sys.info()[['sysname']] %in% c('Linux', 'Windows')) {
-  options(repos = c(CRAN = "https://packagemanager.posit.co/cran/__linux__/rhel9/latest"))
+  options(repos = c(CRAN = "https://packagemanager.posit.co/cran/__linux__/noble/latest"))
 } #else {
-# 	## For Mac users, we'll default to installing from CRAN/MRAN instead, since
-# 	## RSPM does not yet support Mac binaries.
-# 	options(repos = c(CRAN = "https://cran.rstudio.com/"))
-# 	# options(renv.config.mran.enabled = TRUE) ## TRUE by default
-# 	## Also need to configure proj path for sf (assuming gdal installed with brew)
-# 	## See: https://github.com/r-spatial/sf/#macos
-# 	options(
-# 		configure.args = list(
-# 			sf = "--with-proj-lib=/usr/local/lib/"
-# 		)
-# 	)
-# }
+ 	## For Mac users, we'll default to installing from CRAN/MRAN instead, since
+ 	## RSPM does not yet support Mac binaries.
+ 	options(repos = c(CRAN = "https://cran.rstudio.com/"))
+ 	# options(renv.config.mran.enabled = TRUE) ## TRUE by default
+ 	## Also need to configure proj path for sf (assuming gdal installed with brew)
+ 	## See: https://github.com/r-spatial/sf/#macos
+ 	options(
+ 		configure.args = list(
+ 			sf = "--with-proj-lib=/usr/local/lib/"
+ 		)
+ 	)
+ }
 options(renv.config.repos.override = getOption("repos"))
 
