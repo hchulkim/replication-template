@@ -28,10 +28,6 @@ RUN tlmgr option repository "$TEXLIVE_REPOSITORY"; \
   tlmgr update --all
 # -------------------------------------------------------
 
-# Install some R packages from source to avoid error
-RUN R -q -e "install.packages('stringi', type='source', repos='https://cloud.r-project.org')"
-RUN R -q -e "install.packages('sf', type='source', repos='https://cloud.r-project.org')"
-
 # Julia
 ENV JULIA_VERSION=1.11.6
 RUN /rocker_scripts/install_julia.sh
