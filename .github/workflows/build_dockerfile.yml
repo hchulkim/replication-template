@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: r_4.5.1   # repo name on Docker Hub: DOCKERHUB_USERNAME/r_4.5.1
+      IMAGE_NAME_2: r_julia_quarto # repo name on Docker Hub: DOCKERHUB_USERNAME/r_julia_quarto
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,8 +28,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Optional but recommended: enable GitHub Actions cache for faster builds
-      - name: Build and push (multi-arch)
+      # build and push multi-arch platform
+      - name: Build and push (multi-arch) base Dockerfile
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -42,6 +43,21 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}-${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          # Optional: ensure we don’t reuse a cached single-arch base incorrectly
+          pull: true
+          
+      - name: Build and push (multi-arch) Dockerfile with R, Julia, and Quarto setup
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile_r_julia_quarto
+          platforms: linux/amd64,linux/arm64   # <-- key line
+          push: true
+          # tag strategy: latest + branch + short sha
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME_2 }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME_2 }}:${{ github.ref_name }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME_2 }}:${{ github.ref_name }}-${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           pull: true
 
