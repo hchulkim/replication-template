@@ -30,9 +30,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgeos-dev \
     libproj-dev \
     libudunits2-dev \
+    ca-certificates \
+    tar \
     cmake \
     git \
     wget \
+    curl \
+    perl \
     pandoc \
     graphviz \
     make \
