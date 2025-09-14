@@ -85,6 +85,15 @@ It is important to set up dependency management for the programming languages we
 	- Add tags to tasks to track progress by area. Some template tags included: `build`, `analysis`, `writing`, `review`, `enhancement`, `bug`.
 - Use branches to ensure your main research workflow is not corrupted. Also modify files via pull requests. Use closing keywords to close issues.
 
+## Things to note for reproducibility
+
+Some sections in this template may need to be updated in the future. I’ll periodically handle the updates, but if any issues arise, please check whether they are related to these sections.
+
+1. `.Rprofile`: Currently, this profile uses Ubuntu 24.04 *(noble)* as the repo. If you have different Ubuntu version, change this repo.
+2. `Dockerfile_r_julia_quarto`: Currently, this `Dockerfile` use different methods to install `tinytex` for ARM64 architecture. This is because as of this moment `quarto install tinytex` does not work for ARM64. If this changes (I think `quarto` team is trying to implement this command for ARM64 as well), you just need to put `quarto install tinytex` instead of having the bulky if statement. Also, you probably would not need to add tinytex to the current PATH as well. This is solved when you just use `quarto install tinytex`.
+3. `Dockerfile_r_julia_quarto`: Currently, I am using `https://ctan.math.illinois.edu/systems/texlive/tlnet` as the CTAN mirror for downloading tex packages. The problem is that some CTAN mirrors get stale. If this affects the current mirror, you might need to assign new CTAN mirror.
+4. `Dockerfile`: Currently, I am installing 1.1.5 version of `renv` package. If you want to install something else, change it.
+
 # Example README template
 
 When you are creating your own research project based on this GitHub template, only keep the format below and erase all the contents above. Also erase the [README documentation and checklist section](#readme-documentation-and-checklist) below.
