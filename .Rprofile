@@ -6,6 +6,12 @@ source("renv/activate.R")
 ## For Linux and Windows users, we'll use RStudio Package Manager (RSPM).
 if (Sys.info()[['sysname']] %in% c('Linux', 'Windows')) {
   options(repos = c(CRAN = "https://packagemanager.posit.co/cran/__linux__/noble/latest"))
+  options(
+ 		configure.args = list(
+      stringi = "--disable-pkg-config"
+ 		)
+ 	)
+ }
 } #else {
  	## For Mac users, we'll default to installing from CRAN/MRAN instead, since
  	## RSPM does not yet support Mac binaries.
@@ -15,6 +21,7 @@ if (Sys.info()[['sysname']] %in% c('Linux', 'Windows')) {
  	## See: https://github.com/r-spatial/sf/#macos
  	options(
  		configure.args = list(
+      stringi = "--disable-pkg-config",
  			sf = "--with-proj-lib=/usr/local/lib/"
  		)
  	)
