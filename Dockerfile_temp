@@ -1,0 +1,5 @@
+FROM hchulkim/r_julia_quarto:latest
+
+# Install some R packages from source to avoid error
+RUN R -q -e "remotes::install_version('stringi', version='1.8.7', repos='https://cloud.r-project.org')"
+RUN R -q -e "remotes::install_version('sf', version='1.0.21' repos='https://cloud.r-project.org')"
