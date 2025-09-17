@@ -11,8 +11,7 @@ if (Sys.info()[['sysname']] %in% c('Linux', 'Windows')) {
       stringi = "--disable-pkg-config"
  		)
  	)
- }
-} #else {
+ } else {
  	## For Mac users, we'll default to installing from CRAN/MRAN instead, since
  	## RSPM does not yet support Mac binaries.
  	options(repos = c(CRAN = "https://cran.rstudio.com/"))
