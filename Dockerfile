@@ -44,8 +44,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
     
 # Install renv R package (stable version)
+ARG RENV_VERSION=1.1.5
 RUN R -e "install.packages('remotes')"
-# RUN R -e "remotes::install_github('rstudio/renv@v1.1.5')"
+# RUN R -e "remotes::install_github('rstudio/renv@v${RENV_VERSION}')"
 
 # Install develpment R package (less stable version)
 RUN R -e "install.packages('renv', repos = 'https://rstudio.r-universe.dev')"
