@@ -50,6 +50,7 @@ RUN R -e "install.packages('remotes')"
 
 # Install develpment R package (less stable version)
 RUN R -e "install.packages('renv', repos = 'https://rstudio.r-universe.dev')"
+RUN R -e "packageVersion('renv')"
 
 # Setup setting for renv package: DO NOT USE IT HERE! Use it when you do renv::restore() is your Dockerfile
 # ENV RENV_CONFIG_RSPM_ENABLED=TRUE
