@@ -42,10 +42,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     make \
     makefile2graph && \
     rm -rf /var/lib/apt/lists/*
-
-# Install renv R package
+    
+# Install renv R package (stable version)
 RUN R -e "install.packages('remotes')"
-RUN R -e "remotes::install_github('rstudio/renv@v1.1.5')"
+# RUN R -e "remotes::install_github('rstudio/renv@v1.1.5')"
+
+# Install develpment R package (less stable version)
+RUN R -e "install.packages('renv', repos = 'https://rstudio.r-universe.dev')"
+
+# Setup setting for renv package: DO NOT USE IT HERE! Use it when you do renv::restore() is your Dockerfile
+# ENV RENV_CONFIG_RSPM_ENABLED=TRUE
+# ENV RENV_CONFIG_REPOS_OVERRIDE=REPOS LINK
+
 
 # Set working directory for the project
 WORKDIR /home/project
