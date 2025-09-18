@@ -81,9 +81,9 @@ It is important to set up dependency management for the programming languages we
 
 ## 3. Leveraging on Github capabilities
 
-- Use issues as tasks. Track it all on a project board named "Tasks".
-	- Add tags to tasks to track progress by area. Some template tags included: `build`, `analysis`, `writing`, `review`, `enhancement`, `bug`.
-- Use branches to ensure your main research workflow is not corrupted. Also modify files via pull requests. Use closing keywords to close issues.
+- Use GitHub wiki as a document for overall project information, project goals, milestones, and anything that should be permanently documented.
+- Use issues as tasks. Link them in the wiki as well. 
+- Use branches to ensure your main research workflow is not corrupted. Also modify files via pull requests.
 
 ## Things to note for reproducibility
 
@@ -92,7 +92,9 @@ Some sections in this template may need to be updated in the future. I’ll peri
 1. `.Rprofile`: Currently, this profile uses Ubuntu 24.04 *(noble)* as the repo. If you have different Ubuntu version, change this repo.
 2. `Dockerfile_r_julia_quarto`: Currently, this `Dockerfile` use different methods to install `tinytex` for ARM64 architecture. This is because as of this moment `quarto install tinytex` does not work for ARM64. If this changes (I think `quarto` team is trying to implement this command for ARM64 as well), you just need to put `quarto install tinytex` instead of having the bulky if statement. Also, you probably would not need to add tinytex to the current PATH as well. This is solved when you just use `quarto install tinytex`.
 3. `Dockerfile_r_julia_quarto`: Currently, I am using `https://ctan.math.illinois.edu/systems/texlive/tlnet` as the CTAN mirror for downloading tex packages. The problem is that some CTAN mirrors get stale. If this affects the current mirror, you might need to assign new CTAN mirror.
-4. `Dockerfile`: Currently, I am installing 1.1.5 version of `renv` package. If you want to install something else, change it.
+4. `Dockerfile`: Currently, I am installing 1.1.5.9000 development version of `renv` package. If you want to install something else, change it.
+
+For more information on some trials and errors related to the `Dockerfile`, check this [blog post](https://hchulkim.github.io/posts/dockerfile-trial/)
 
 # Example README template
 
