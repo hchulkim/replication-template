@@ -9,7 +9,7 @@ jobs:
     env:
       IMAGE_NAME: r_4.5.1   # repo name on Docker Hub: DOCKERHUB_USERNAME/r_4.5.1
       IMAGE_NAME_2: r_julia_quarto # repo name on Docker Hub: DOCKERHUB_USERNAME/r_julia_quarto
-      IMAGE_NAME_TEMP: research_climate_pest # temporary repo name on Docker Hub for setting an environment for specific research
+      IMAGE_NAME_TEMP: blp_practice # temporary repo name on Docker Hub for setting an environment for specific research
     steps:
       - name: Checkout
         uses: actions/checkout@v4
