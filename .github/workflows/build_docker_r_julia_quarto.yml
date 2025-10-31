@@ -7,9 +7,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: r_4.5.1   # repo name on Docker Hub: DOCKERHUB_USERNAME/r_4.5.1
-      IMAGE_NAME_2: r_julia_quarto # repo name on Docker Hub: DOCKERHUB_USERNAME/r_julia_quarto
-      IMAGE_NAME_TEMP: research_avocado # temporary repo name on Docker Hub for setting an environment for specific research
+      IMAGE_NAME: r_julia_quarto # repo name on Docker Hub: DOCKERHUB_USERNAME/r_julia_quarto
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,9 +35,9 @@ jobs:
           push: true
           # tag strategy: latest + branch + short sha
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME_2 }}:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME_2 }}:${{ github.ref_name }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME_2 }}:${{ github.ref_name }}-${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}-${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           pull: true
