@@ -1,8 +1,17 @@
 # data folder
 **/input
 
+# output folder (if you want to link it to overleaf)
+# **/output
+
 # macos file
 .DS_Store
+
+# renv folder
+renv/
+
+# Rprofile
+.Rprofile
 
 # R project files
 *.Rproj
